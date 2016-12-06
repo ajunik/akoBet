@@ -1,5 +1,6 @@
-package com.akoBet;
+package com.akoBet.repository;
 
+import com.akoBet.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 /**

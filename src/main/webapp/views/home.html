@@ -1,0 +1,15 @@
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>akoBet</title>
+    <link rel="stylesheet"
+          type="text/css"
+          th:href="@{/css/style.css}"></link>
+</head>
+<body>
+<h1 th:text="#{akobet.home.welcome}"></h1>
+<a th:href="@{/login}">Zaloguj</a>
+<a th:href="@{/register}">Zarejestruj</a>
+</body>
+</html>

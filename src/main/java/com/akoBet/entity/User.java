@@ -1,4 +1,4 @@
-package com.akoBet;
+package com.akoBet.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
