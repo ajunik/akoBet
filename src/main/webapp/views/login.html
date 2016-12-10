@@ -10,8 +10,8 @@
     <header class="major special">
         <h2>Log In</h2>
     </header>
-    <div class="container">
-        <div th:if="${param.error}">Invalid username and password.</div>
+    <div class="container" style="width:250px;">
+        <div th:if="${param.error}" class="alert-danger">Invalid username and password.</div>
         <form th:action="@{/login}" method="post">
             <div>
                 <label> User Name : <input type="text" name="username"/>
@@ -21,7 +21,7 @@
                 <label> Password: <input type="password" name="password"/>
                 </label>
             </div>
-            <div>
+            <div style="text-align:center; margin:auto;">
                 <input type="submit" value="Sign In"/>
             </div>
         </form>

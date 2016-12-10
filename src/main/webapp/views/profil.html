@@ -4,12 +4,13 @@
 <body>
 
 <header id="header" th:include="commons/elements :: title-menu"/>
+<div th:include="commons/elements :: security"/>
 <nav id="nav" th:include="commons/elements :: main-menu"/>
 
 
 <section id="main" class="wrapper">
     <h1>
-        <span th:text="${user.username} + ' Home'" th:remove="tag">&nbsp;</span>
+        <span th:text="${currentUser.username} + ' Home'" th:remove="tag">&nbsp;</span>
     </h1>
 </section>
 

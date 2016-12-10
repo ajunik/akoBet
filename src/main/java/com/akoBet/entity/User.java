@@ -25,6 +25,7 @@ public class User implements UserDetails {
 
     @NotNull(message = "{fieldEmpty}")
     @Size(min = 4, max = 15, message = "{fieldSize}")
+    @Column(unique = true)
     private String username;
 
 
@@ -40,6 +41,7 @@ public class User implements UserDetails {
 
 
     @NotNull(message = "{fieldEmpty}")
+    @Column(unique = true)
     private String email;
     private Date registrationDate;
     private String typesStats;

@@ -15,4 +15,6 @@ public interface UserRepository extends CrudRepository<User,Long> {
     public User getUserById(Long id);
 
     public User getUserByConfirmationId(String confirmationId);
+
+    public User getUserByEmail(String email);
 }

@@ -4,6 +4,7 @@
 <body>
 
 <header id="header" th:include="commons/elements :: title-menu"/>
+<div th:include="commons/elements :: security"/>
 <nav id="nav" th:include="commons/elements :: main-menu"/>
 
 
@@ -13,7 +14,6 @@
             <span th:text="${message}" th:remove="tag">&nbsp;</span>
         </h1>
         <ul class="actions">
-            <!-- todo: subset if logged in etc. -->
             <li><a href="/login" class="button small special">Sign In</a></li>
             <li><a href="/signup" class="button small alt">New User</a></li>
             <li><a href="/profil" class="button small">User Home</a></li>

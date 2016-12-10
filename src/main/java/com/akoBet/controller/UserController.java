@@ -34,18 +34,6 @@ public class UserController extends WebMvcConfigurerAdapter {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-
-        registry.addViewController("/login").setViewName("login");
-    }
-
-    @RequestMapping("/profil")
-    String getProfil(User user, Model model) {
-        model.addAttribute("user", user);
-        return "profil";
-    }
-
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String showForm(User register) {
@@ -72,7 +60,7 @@ public class UserController extends WebMvcConfigurerAdapter {
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String checkPerson(@Valid User user, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors() || !processPasswords(user, bindingResult)) {
+        if (bindingResult.hasErrors() || !checkUnique(user, bindingResult) || !processPasswords(user, bindingResult)) {
             return "register";
         }
 
@@ -95,6 +83,19 @@ public class UserController extends WebMvcConfigurerAdapter {
         return true;
     }
 
+    private boolean checkUnique(User user, BindingResult bindingResult) {
+        User userByMail = userRepository.getUserByEmail(user.getEmail());
+        User userByName = userRepository.getUserByUsername(user.getUsername());
+
+        if (userByMail != null) {
+            bindingResult.rejectValue("email", "Email just exists", "Email just exists");
+            return false;
+        } else if (userByName != null) {
+            bindingResult.rejectValue("username", "Username just exists", "Username just exists");
+            return false;
+        }
+        return true;
+    }
 
     private String createConfirmationID() {
         return java.util.UUID.randomUUID().toString();

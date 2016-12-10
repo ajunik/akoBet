@@ -5,12 +5,19 @@
     <a href="#nav">Menu</a>
 </header>
 
+<block th:fragment="security">
+    Logged in as <span sec:authentication="name"/>
+    <form id="logout" th:action="@{/logout}" method="post">
+    </form>
+    <a href="#" onclick="document.getElementById('logout').submit()">Sign Out</a>
+</block>
+
 <nav th:fragment="main-menu">
     <ul class="links">
-        <li><a href="/">Home</a></li>
+        <li><a href="/profil" class="button small">Profil</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="#">News</a></li>
-        <li><a href="#">BET</a></li>
-        <li><a href="#">TABLES</a></li>
-        <li><a href="#" onclick="document.getElementById('logout').submit()">Sign Out</a></li>
+        <li><a href="#">Bets</a></li>
+        <li><a href="#">Tables</a></li>
     </ul>
 </nav>
