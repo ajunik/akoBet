@@ -1,15 +1,32 @@
-<html
-        xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>akoBet</title>
-    <link rel="stylesheet"
-          type="text/css"
-          th:href="@{/css/style.css}"></link>
-</head>
-<body>
-<h1 th:text="#{akobet.home.welcome}"></h1>
-<a th:href="@{/login}">Zaloguj</a>
-<a th:href="@{/register}">Zarejestruj</a>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="commons/imports :: head"/>
+<body class="landing">
+
+<header th:include="commons/elements :: title-menu"/>
+<nav id="nav" th:include="commons/elements :: main-menu"/>
+
+<section id="banner">
+    <h2>
+        <span th:text="'Hello, ' + ${name} + '!'" th:remove="tag">&nbsp;</span>
+    </h2>
+    <p>This is a placeholder for my pet project.</p>
+    <p>
+        You can find more information (in Polish) on
+    </p>
+    <ul class="actions">
+        <li><a href="/login" class="button big special">Sign In</a></li>
+        <li><a href="/signup" class="button big alternate">New User</a></li>
+    </ul>
+</section>
+
+<section class="wrapper special">
+    <div class="inner">
+        <th:block th:include="commons/loginInfo :: security"/>
+    </div>
+</section>
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
 </body>
 </html>

@@ -27,8 +27,8 @@ import java.util.Locale;
 
 
 @Configuration
-@EnableAutoConfiguration
 @SpringBootApplication
+@EnableAutoConfiguration
 @ComponentScan
 @EnableJpaRepositories(basePackageClasses = UserRepository.class)
 public class AkoBetApplication extends WebMvcConfigurerAdapter {
