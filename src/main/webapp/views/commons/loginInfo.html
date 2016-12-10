@@ -1,7 +1,0 @@
-<block th:fragment="security">
-    Logged in as <span sec:authentication="name"/> with authorities: <span
-        sec:authentication="authorities"/>
-    <form id="logout" th:action="@{/logout}" method="post">
-    </form>
-    <a href="#" onclick="document.getElementById('logout').submit()">Sign Out</a>
-</block>

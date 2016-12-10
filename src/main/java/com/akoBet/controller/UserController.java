@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -39,11 +40,17 @@ public class UserController extends WebMvcConfigurerAdapter {
         registry.addViewController("/login").setViewName("login");
     }
 
+    @RequestMapping("/profil")
+    String getProfil(User user, Model model) {
+        model.addAttribute("user", user);
+        return "profil";
+    }
+
+
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String showForm(User register) {
         return "register";
     }
-
 
     @RequestMapping("/confirm")
     public String confirmation(@RequestParam(value = "id", required = true) String confirmationId, Model model) {
@@ -56,7 +63,7 @@ public class UserController extends WebMvcConfigurerAdapter {
                 user.setConfirmationId(null);
                 userRepository.save(user);
             }
-            message = user.getLogin() + ", your account has been verified. You may now log in. ";
+            message = user.getUsername() + ", your account has been verified. You may now log in. ";
         }
 
         model.addAttribute("message", message);

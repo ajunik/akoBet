@@ -25,7 +25,7 @@ public class User implements UserDetails {
 
     @NotNull(message = "{fieldEmpty}")
     @Size(min = 4, max = 15, message = "{fieldSize}")
-    private String login;
+    private String username;
 
 
     @Transient
@@ -36,10 +36,8 @@ public class User implements UserDetails {
     @Size(min = 5, max = 30)
     private String password2;
 
-    @Transient
     private String passwordEncrypted;
-    @Transient
-    private String passwordRand;
+
 
     @NotNull(message = "{fieldEmpty}")
     private String email;
@@ -133,13 +131,6 @@ public class User implements UserDetails {
         this.passwordEncrypted = passwordEncrypted;
     }
 
-    public String getPasswordRand() {
-        return passwordRand;
-    }
-
-    public void setPasswordRand(String password) {
-        this.passwordRand = password;
-    }
 
     public Long getId() {
         return id;
@@ -147,14 +138,6 @@ public class User implements UserDetails {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPassword1() {
@@ -195,11 +178,11 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return username;
     }
 
     public void setUsername(String username) {
-        this.login = username;
+        this.username = username;
     }
 
     @Override
@@ -219,6 +202,6 @@ public class User implements UserDetails {
 
     @Override
     public String toString() {
-        return login;
+        return username;
     }
 }

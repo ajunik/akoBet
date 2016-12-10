@@ -8,7 +8,7 @@
 
 <section id="banner">
     <h2>
-        <span th:text="'Hello, ' + ${name} + '!'" th:remove="tag">&nbsp;</span>
+        <span th:text="'Hello ' + ${name} + '!'" th:remove="tag">&nbsp;</span>
     </h2>
     <p>This is a placeholder for my pet project.</p>
     <p>
@@ -20,11 +20,6 @@
     </ul>
 </section>
 
-<section class="wrapper special">
-    <div class="inner">
-        <th:block th:include="commons/loginInfo :: security"/>
-    </div>
-</section>
 
 <footer id="footer" th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>

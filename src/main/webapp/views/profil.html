@@ -9,11 +9,10 @@
 
 <section id="main" class="wrapper">
     <h1>
-        <span th:text="${user.login} + ' Home'" th:remove="tag">&nbsp;</span>
+        <span th:text="${user.username} + ' Home'" th:remove="tag">&nbsp;</span>
     </h1>
 </section>
 
-<div th:include="commons/loginInfo :: security"/>
 <footer id="footer" th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>
 </body>
