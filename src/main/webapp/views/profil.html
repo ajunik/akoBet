@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="commons/imports :: head"/>
+<body>
+
+<header id="header" th:include="commons/elements :: title-menu"/>
+<nav id="nav" th:include="commons/elements :: main-menu"/>
+
+
+<section id="main" class="wrapper">
+    <h1>
+        <span th:text="${user.login} + ' Home'" th:remove="tag">&nbsp;</span>
+    </h1>
+</section>
+
+<div th:include="commons/loginInfo :: security"/>
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+</body>
+</html>
