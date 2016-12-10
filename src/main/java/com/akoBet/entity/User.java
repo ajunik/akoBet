@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -51,7 +52,24 @@ public class User implements UserDetails {
     private String level;
     private boolean confirmationStatus;
     private String confirmationId;
+    private String createdDate;
+    private String updatedDate;
 
+
+    @Transient
+    String pattern = "dd/MM/yyyy";
+    @Transient
+    SimpleDateFormat format = new SimpleDateFormat(pattern);
+
+    @PrePersist
+    protected void onCreate() {
+        createdDate = format.format(new Date());
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedDate = format.format(new Date());
+    }
 
     public String getEmail() {
         return email;
