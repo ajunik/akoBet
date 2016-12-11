@@ -11,44 +11,44 @@
     <div class="container">
 
         <header class="major special">
-            <h2>New User</h2>
+            <h2 th:text="#{akobet.home.register}"></h2>
         </header>
 
-        <div class="container" style="width:400px;">
+        <div class="container" style="width:500px;">
             <form action="#" th:action="@{/signup}" th:object="${user}"
                   method="post">
                 <table>
                     <tr>
-                        <td>Login:*</td>
+                        <td th:text="#{akobet.login.username}"></td>
                         <td><input type="text" th:field="*{username}"/></td>
                         <td th:if="${#fields.hasErrors('username')}"
                             th:errors="*{username}">login Error
                         </td>
                     </tr>
                     <tr>
-                        <td>Password:*</td>
+                        <td th:text="#{akobet.login.password}"></td>
                         <td><input type="password" th:field="*{password1}"/></td>
                         <td th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}">Password error</td>
                     </tr>
                     <tr>
-                        <td>Repeat Password:*</td>
+                        <td th:text="#{akobet.login.repeat}"></td>
                         <td><input type="password" th:field="*{password2}"/></td>
                         <td th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">Password error</td>
                     </tr>
                     <tr>
-                        <td>Email:*</td>
+                        <td th:text="#{akobet.login.email}"></td>
                         <td><input type="email" th:field="*{email}"/></td>
                         <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
                             Error
                         </td>
                     </tr>
                     <tr>
-                        <td>Favorite Club:*</td>
+                        <td th:text="#{akobet.login.favorite}"></td>
                         <td><input type="text" th:field="*{favoriteClub}"/></td>
                     </tr>
                 </table>
                 <div style="text-align:center; margin:auto;">
-                    <button type="submit">Submit</button>
+                    <button type="submit" th:text="#{akobet.register}"></button>
                 </div>
             </form>
         </div>

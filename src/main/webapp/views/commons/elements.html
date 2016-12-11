@@ -1,23 +1,30 @@
 <header th:fragment="title-menu">
     <h1>
-        <a href="/">akoBet</a>
+        <a href="/" th:text="#{akobet.title}"></a>
     </h1>
-    <a href="#nav">Menu</a>
+    <a href="#nav" th:text="#{akobet.menu}"></a>
+
+    <ul style="float:right">
+        <responsive-row><a th:href="@{__${#httpServletRequest.requestURI}__?lang=pl}" class="button small special"
+                           th:text="#{akobet.pl}"></a>
+            <a th:href="@{__${#httpServletRequest.requestURI}__?lang=en}" class="button small"
+               th:text="#{akobet.en}"></a></responsive-row>
+    </ul>
 </header>
 
-<block th:fragment="security">
-    Logged in as <span sec:authentication="name"/>
-    <form id="logout" th:action="@{/logout}" method="post">
+<block th:fragment="security"><span th:text="#{akobet.home.loginAs}"/>
+    <span sec:authentication="name"/>
+    <form id="logout" th:action="@{/logout} " method="post">
     </form>
-    <a href="#" onclick="document.getElementById('logout').submit()">Sign Out</a>
+    <a href="#" onclick="document.getElementById('logout').submit()" th:text="#{akobet.home.logout}"></a>
 </block>
 
 <nav th:fragment="main-menu">
     <ul class="links">
-        <li><a href="/profil" class="button small">Profil</a></li>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">News</a></li>
-        <li><a href="#">Bets</a></li>
-        <li><a href="#">Tables</a></li>
+        <li><a href="/profil" class="button small" th:text="#{akobet.menu.profil}"></a></li>
+        <li><a href="#" th:text="#{akobet.menu.home}"></a></li>
+        <li><a href="#" th:text="#{akobet.menu.tips}"></a></li>
+        <li><a href="#" th:text="#{akobet.menu.news}"></a></li>
+        <li><a href="#" th:text="#{akobet.menu.tables}"></a></li>
     </ul>
 </nav>

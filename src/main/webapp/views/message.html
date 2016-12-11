@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:include="commons/imports :: head"/>
 <body>
 
@@ -14,9 +15,9 @@
             <span th:text="${message}" th:remove="tag">&nbsp;</span>
         </h1>
         <ul class="actions">
-            <li><a href="/login" class="button small special">Sign In</a></li>
-            <li><a href="/signup" class="button small alt">New User</a></li>
-            <li><a href="/profil" class="button small">User Home</a></li>
+            <li><a href="/login" class="button small special" th:text="#{akobet.home.login}"></a></li>
+            <li><a href="/signup" class="button small alt" th:text="#{akobet.home.register}"></a></li>
+            <li><a href="/profil" class="button small" th:text="#{akobet.menu.profil}"></a></li>
         </ul>
     </div>
 </section>

@@ -4,6 +4,7 @@ import com.akoBet.entity.User;
 import com.akoBet.repository.UserRepository;
 import com.akoBet.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Locale;
 
 /**
  * Created by Arek on 09.12.2016.

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.codec.Utf8;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -51,6 +52,7 @@ public class AkoBetApplication extends WebMvcConfigurerAdapter {
 		templateResolver.setPrefix("/views/");
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
+		templateResolver.setCharacterEncoding("UTF-8");
 		return templateResolver;
 	}
 	@Bean
@@ -65,6 +67,7 @@ public class AkoBetApplication extends WebMvcConfigurerAdapter {
 	public ViewResolver viewResolver() {
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine());
+		viewResolver.setCharacterEncoding("UTF-8");
 		return viewResolver;
 	}
 

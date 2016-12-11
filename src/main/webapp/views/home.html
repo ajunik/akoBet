@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:include="commons/imports :: head"/>
 <body class="landing">
 
@@ -9,15 +10,12 @@
 
 <section id="banner">
     <h2>
-        <span th:text="'Hello ' + ${name} + '!'" th:remove="tag">&nbsp;</span>
+        <span th:text="#{akobet.home.welcome} + ${name} + '!'" th:remove="tag">&nbsp;</span>
     </h2>
-    <p>This is a placeholder for my pet project.</p>
-    <p>
-        You can find more information (in Polish) on
-    </p>
+    <p th:text="#{akobet.home.description}"/>
     <ul class="actions">
-        <li><a href="/login" class="button big special">Sign In</a></li>
-        <li><a href="/signup" class="button big alternate">New User</a></li>
+        <li><a href="/login" class="button big special" th:text="#{akobet.home.login}"></a></li>
+        <li><a href="/signup" class="button big alternate" th:text="#{akobet.home.register}"></a></li>
     </ul>
 </section>
 
