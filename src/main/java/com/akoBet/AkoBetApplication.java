@@ -53,6 +53,7 @@ public class AkoBetApplication extends WebMvcConfigurerAdapter {
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
 		templateResolver.setCharacterEncoding("UTF-8");
+		templateResolver.setCacheable(false);
 		return templateResolver;
 	}
 	@Bean
