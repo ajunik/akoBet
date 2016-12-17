@@ -4,7 +4,6 @@ import com.akoBet.entity.User;
 import com.akoBet.repository.UserRepository;
 import com.akoBet.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Locale;
 
 /**
  * Created by Arek on 09.12.2016.
@@ -46,14 +42,14 @@ public class UserController extends WebMvcConfigurerAdapter {
     public String confirmation(@RequestParam(value = "id", required = true) String confirmationId, Model model) {
 
         User user = userRepository.getUserByConfirmationId(confirmationId);
-        String message = "Invalid confirmation id. Contact us or try again.";
+        String message = "akobet.register.invalidConfirm";
         if (user != null) {
             if (!user.isConfirmationStatus()) {
                 user.setConfirmationStatus(true);
                 user.setConfirmationId(null);
                 userRepository.save(user);
             }
-            message = user.getUsername() + ", your account has been verified. You may now log in. ";
+            message = user.getUsername() + "akobet.register.success";
         }
 
         model.addAttribute("message", message);
@@ -77,8 +73,8 @@ public class UserController extends WebMvcConfigurerAdapter {
 
     private boolean processPasswords(User user, BindingResult bindingResult) {
         if (!user.getPassword1().equals(user.getPassword2())) {
-            bindingResult.rejectValue("password1", "Passwords don't match", "Passwords don't match");
-            bindingResult.rejectValue("password2", "Passwords don't match", "Passwords don't match");
+            bindingResult.rejectValue("password1", "akobet.register.passwordsAreDifferent", "Passwords don't match");
+            bindingResult.rejectValue("password2", "akobet.register.passwordsAreDifferent", "Passwords don't match");
             return false;
         }
         user.setPasswordEncrypted(passwordEncoder.encode(user.getPassword1()));
@@ -90,10 +86,10 @@ public class UserController extends WebMvcConfigurerAdapter {
         User userByName = userRepository.getUserByUsername(user.getUsername());
 
         if (userByMail != null) {
-            bindingResult.rejectValue("email", "Email just exists", "Email just exists");
+            bindingResult.rejectValue("email", "akobet.register.emailExists", "Email just exists");
             return false;
         } else if (userByName != null) {
-            bindingResult.rejectValue("username", "Username just exists", "Username just exists");
+            bindingResult.rejectValue("username", "akobet.register.usernameExists", "Username just exists");
             return false;
         }
         return true;

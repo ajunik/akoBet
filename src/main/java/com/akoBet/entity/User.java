@@ -5,7 +5,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -24,8 +23,8 @@ public class User implements UserDetails {
     @Id
     private Long id;
 
-    @NotNull(message = "{fieldEmpty}")
-    @Size(min = 4, max = 15, message = "{fieldSize}")
+
+    @Size(min = 4, max = 15)
     @Column(unique = true)
     private String username;
 
@@ -35,13 +34,12 @@ public class User implements UserDetails {
     private String password1;
 
     @Transient
-    @Size(min = 5, max = 30)
     private String password2;
 
     private String passwordEncrypted;
 
 
-    @NotNull(message = "{fieldEmpty}")
+    @Size(min = 5)
     @Column(unique = true)
     private String email;
     private Date registrationDate;

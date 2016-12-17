@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+>
 <head th:include="commons/imports :: head"/>
 <body>
 
@@ -12,7 +12,7 @@
 <section id="main" class="wrapper">
     <div class="container">
         <h1>
-            <span th:text="${message}" th:remove="tag">&nbsp;</span>
+            <span th:text="#{${message}}" th:remove="tag">&nbsp;</span>
         </h1>
         <ul class="actions">
             <li><a href="/login" class="button small special" th:text="#{akobet.home.login}"></a></li>
