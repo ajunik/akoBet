@@ -11,7 +11,7 @@
         <h2 th:text="#{akobet.home.login}"></h2>
     </header>
     <div class="container" style="width:250px;">
-        <div th:if="${param.error}" class="alert-danger" th:text="#{akobet.login.invalid}"></div>
+        <div th:if="${param.error}" th:text="#{akobet.login.invalid}"></div>
         <form th:action="@{/login}" method="post">
             <div>
                 <label><span th:text="#{akobet.login.username}"/><input type="text" name="username"/>

@@ -1,5 +1,6 @@
 package com.akoBet.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,20 +8,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by Arek on 04.12.2016.
  */
 @Entity
 @Table(name="USERS")
-public class User implements UserDetails {
+public class User extends org.springframework.security.core.userdetails.User implements UserDetails {
 
+    public User() {
+        super("NONE", "NONE", false, false, false, false, new ArrayList<GrantedAuthority>());
+    }
 
-    @GeneratedValue
     @Id
+    @GeneratedValue(generator = "user_id", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "user_id", sequenceName = "user_id_seq")
     private Long id;
 
 
@@ -38,7 +41,6 @@ public class User implements UserDetails {
 
     private String passwordEncrypted;
 
-
     @Size(min = 5)
     @Column(unique = true)
     private String email;
@@ -52,12 +54,25 @@ public class User implements UserDetails {
     private String confirmationId;
     private String createdDate;
     private String updatedDate;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, targetEntity = UserRole.class)
+    List<UserRole> UserRole = new ArrayList<UserRole>();
 
 
     @Transient
     String pattern = "dd/MM/yyyy";
     @Transient
     SimpleDateFormat format = new SimpleDateFormat(pattern);
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    Date lastLogin;
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
+    }
 
     @PrePersist
     protected void onCreate() {
@@ -174,14 +189,36 @@ public class User implements UserDetails {
         this.password2 = password2;
     }
 
+
+    public List<UserRole> getUserRole() {
+        return UserRole;
+    }
+
+    public void setUserRole(List<UserRole> UserRole) {
+        for (UserRole ar : UserRole) {
+            this.addUserRole(ar);
+        }
+    }
+
+    public void addUserRole(UserRole UserRole) {
+        if (!this.UserRole.contains(UserRole)) {
+            UserRole.setUser(this);
+            this.UserRole.add(UserRole);
+        }
+    }
+    
     @Override
     public boolean isEnabled() {
         return isConfirmationStatus();
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("USER"));
+    public Collection getAuthorities() {
+        Set ga = new HashSet();
+        for (UserRole ur : this.UserRole) {
+            ga.add(new SimpleGrantedAuthority(ur.getRole()));
+        }
+        return ga;
     }
 
     @Override
@@ -217,6 +254,7 @@ public class User implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
 
     @Override
     public String toString() {

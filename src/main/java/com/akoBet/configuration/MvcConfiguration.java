@@ -93,6 +93,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
         return localeChangeInterceptor;
     }
 
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
