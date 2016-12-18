@@ -12,11 +12,16 @@
     </ul>
 </header>
 
-<block th:fragment="security"><span th:text="#{akobet.home.loginAs} + ${name}"/>
+<block th:fragment="security">
+    <div sec:authorize="hasRole('ROLE_USER')">
+
+
+        <span th:text="#{akobet.home.loginAs} + ${name}"/>
 
     <form id="logout" th:action="@{/logout} " method="post">
     </form>
     <a href="#" onclick="document.getElementById('logout').submit()" th:text="#{akobet.home.logout}"></a>
+    </div>
 </block>
 
 <nav th:fragment="main-menu">
