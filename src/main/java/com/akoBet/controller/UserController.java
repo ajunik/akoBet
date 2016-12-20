@@ -44,7 +44,7 @@ public class UserController extends WebMvcConfigurerAdapter {
     @RequestMapping("/confirm")
     public String confirmation(@RequestParam(value = "id", required = true) String confirmationId, Model model) {
 
-        User user = userRepository.getUserByConfirmationId(confirmationId);
+        User user = userRepository.findUserByConfirmationId(confirmationId);
         String message = "akobet.register.invalidConfirm";
         if (user != null) {
             if (!user.isConfirmationStatus()) {
@@ -91,8 +91,8 @@ public class UserController extends WebMvcConfigurerAdapter {
     }
 
     private boolean checkUnique(User user, BindingResult bindingResult) {
-        User userByMail = userRepository.getUserByEmail(user.getEmail());
-        User userByName = userRepository.getUserByUsername(user.getUsername());
+        User userByMail = userRepository.findUserByEmail(user.getEmail());
+        User userByName = userRepository.findUserByUsername(user.getUsername());
 
         if (userByMail != null) {
             bindingResult.rejectValue("email", "akobet.register.emailExists", "Email just exists");

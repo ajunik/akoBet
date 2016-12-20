@@ -85,8 +85,8 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
     }
 
     protected boolean checkUnique(User user, BindingResult bindingResult) {
-        User userByMail = userRepository.getUserByEmail(user.getEmail());
-        User userByName = userRepository.getUserByUsername(user.getUsername());
+        User userByMail = userRepository.findUserByEmail(user.getEmail());
+        User userByName = userRepository.findUserByUsername(user.getUsername());
 
         if (userByMail != null) {
             bindingResult.rejectValue("email", "akobet.register.emailExists", "Email just exists");

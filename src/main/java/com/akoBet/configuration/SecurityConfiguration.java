@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/", "/signup", "/about", "/assets/**", "/login", "/confirm").permitAll()
+                .antMatchers("/", "/signup", "/login", "/confirm", "/map").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/actuator/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(username ->
-                userRepository.getUserByUsername(username)).passwordEncoder(passwordEncoder());
+                userRepository.findUserByUsername(username)).passwordEncoder(passwordEncoder());
     }
 
 

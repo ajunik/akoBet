@@ -1,20 +1,20 @@
 package com.akoBet.repository;
 
 import com.akoBet.entity.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
  * Created by Arek on 04.12.2016.
  */
 @Repository
-public interface UserRepository extends CrudRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    public User getUserByUsername(String username);
+    public User findUserByUsername(String username);
 
-    public User getUserById(Long id);
+    public User findUserById(Long id);
 
-    public User getUserByConfirmationId(String confirmationId);
+    public User findUserByConfirmationId(String confirmationId);
 
-    public User getUserByEmail(String email);
+    public User findUserByEmail(String email);
 }
