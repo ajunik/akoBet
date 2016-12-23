@@ -1,9 +1,9 @@
 angular.module('ionic.example', ['ionic'])
 
-    .controller('MapCtrl', function ($scope, $ionicLoading, $compile) {
+    .controller('MapCtrl', function ($scope, $http, $ionicLoading, $compile) {
+
         function initialize() {
             var myLatlng = new google.maps.LatLng(50.07116, 19.942859);
-
             var mapOptions = {
                 center: myLatlng,
                 zoom: 18,
@@ -12,25 +12,71 @@ angular.module('ionic.example', ['ionic'])
             var map = new google.maps.Map(document.getElementById("map"),
                 mapOptions);
 
-            //Marker + infowindow + angularjs compiled ng-click
-            var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-            var compiled = $compile(contentString)($scope);
-
-            var infowindow = new google.maps.InfoWindow({
-                content: compiled[0]
-            });
-
+            var markIcon = {
+                url: 'http://images.clipartpanda.com/google-location-icon-color_icons_green_home.png',
+                scaledSize: new google.maps.Size(30, 50)
+            }
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
-                title: 'Uluru (Ayers Rock)'
+                title: 'Politechnika Krakowska',
+                icon: markIcon
+            });
+
+
+            $http.get('/rest/map')
+                .then(function (success) {
+                    var bookPoints = success.data;
+                    var markerIcon;
+                    bookPoints.forEach(function (place) {
+                        if (place.name == "STS") {
+                            markerIcon = {
+                                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                                scaledSize: new google.maps.Size(40, 40)
+                            };
+                        } else if (place.name == "TOTOLOTEK") {
+                            markerIcon = {
+                                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                                scaledSize: new google.maps.Size(40, 40)
+                            };
+                        } else if (place.name == "FORTUNA") {
+                            markerIcon = {
+                                url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
+                                scaledSize: new google.maps.Size(40, 40)
+                            };
+                        } else {
+                            markerIcon = {
+                                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+                                scaledSize: new google.maps.Size(40, 40)
+                            };
+                        }
+                        marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(place.latitude, place.longitude),
+                            map: map,
+                            title: place.name,
+                            icon: markerIcon,
+                            clickable: true
+                        });
+                        var message = "<h4>" + place.name + "</h4><p>" + place.address + "</p>";
+                        addInfoWindow(marker, message);
+                    });
+                }, function (error) {
+                    console.log('error add markers');
+                });
+
+
+            $scope.map = map;
+        }
+
+        function addInfoWindow(marker, message) {
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: message
             });
 
             google.maps.event.addListener(marker, 'click', function () {
-                infowindow.open(map, marker);
+                infoWindow.open(map, marker);
             });
-
-            $scope.map = map;
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -49,10 +95,6 @@ angular.module('ionic.example', ['ionic'])
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
             }
-        };
-
-        $scope.clickTest = function () {
-            alert('Example of infowindow with ng-click')
         };
 
     });
