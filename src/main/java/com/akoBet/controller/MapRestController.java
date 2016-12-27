@@ -1,7 +1,7 @@
 package com.akoBet.controller;
 
 import com.akoBet.entity.Bookmaker;
-import com.akoBet.repository.BookmakerRepository;
+import com.akoBet.services.BookmakerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ import java.util.List;
 public class MapRestController {
 
     @Autowired
-    BookmakerRepository bookmakerRepository;
+    BookmakerService bookmakerService;
 
 
     @RequestMapping(value = "/map")
@@ -29,7 +29,7 @@ public class MapRestController {
     public
     @ResponseBody
     List<Bookmaker> read() {
-        List<Bookmaker> bookmakers = bookmakerRepository.findAll();
+        List<Bookmaker> bookmakers = bookmakerService.findAll();
         return bookmakers;
     }
 

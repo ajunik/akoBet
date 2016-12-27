@@ -4,12 +4,14 @@ import com.akoBet.entity.News;
 import com.akoBet.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by Arek on 27.12.2016.
  */
+@Service
 public class NewsServiceImpl implements NewsService {
 
     @Autowired

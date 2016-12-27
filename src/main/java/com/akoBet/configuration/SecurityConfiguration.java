@@ -1,7 +1,7 @@
 package com.akoBet.configuration;
 
 
-import com.akoBet.repository.UserRepository;
+import com.akoBet.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(username ->
-                userRepository.findUserByUsername(username)).passwordEncoder(passwordEncoder());
+                userService.findUserByUsername(username)).passwordEncoder(passwordEncoder());
     }
 
 

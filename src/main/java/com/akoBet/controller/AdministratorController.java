@@ -3,7 +3,6 @@ package com.akoBet.controller;
 import com.akoBet.entity.Administrator;
 import com.akoBet.entity.User;
 import com.akoBet.entity.UserRole;
-import com.akoBet.repository.UserRepository;
 import com.akoBet.services.EmailService;
 import com.akoBet.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +27,6 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
 
     @Autowired
     UserService userService;
-
-    @Autowired
-    UserRepository userRepository;
 
     @Autowired
     private EmailService emailService;
@@ -69,7 +65,7 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
         admin.setConfirmationId(createConfirmationID());
         emailService.send(admin.getEmail(), "AkoBet Account Confirmation Link",
                 "http://localhost:8080/confirm?id=" + admin.getConfirmationId());
-        userRepository.save(admin);
+        userService.save(admin);
         model.addAttribute("message", "akobet.register.checkEmail");
         return "message";
     }
@@ -85,8 +81,8 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
     }
 
     protected boolean checkUnique(User user, BindingResult bindingResult) {
-        User userByMail = userRepository.findUserByEmail(user.getEmail());
-        User userByName = userRepository.findUserByUsername(user.getUsername());
+        User userByMail = userService.findUserByEmail(user.getEmail());
+        User userByName = userService.findUserByUsername(user.getUsername());
 
         if (userByMail != null) {
             bindingResult.rejectValue("email", "akobet.register.emailExists", "Email just exists");

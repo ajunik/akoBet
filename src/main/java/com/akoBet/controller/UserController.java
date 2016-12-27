@@ -2,8 +2,8 @@ package com.akoBet.controller;
 
 import com.akoBet.entity.User;
 import com.akoBet.entity.UserRole;
-import com.akoBet.repository.UserRepository;
 import com.akoBet.services.EmailService;
+import com.akoBet.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class UserController extends WebMvcConfigurerAdapter {
 
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
     private EmailService emailService;
@@ -44,13 +44,13 @@ public class UserController extends WebMvcConfigurerAdapter {
     @RequestMapping("/confirm")
     public String confirmation(@RequestParam(value = "id", required = true) String confirmationId, Model model) {
 
-        User user = userRepository.findUserByConfirmationId(confirmationId);
+        User user = userService.findUserByConfirmationId(confirmationId);
         String message = "akobet.register.invalidConfirm";
         if (user != null) {
             if (!user.isConfirmationStatus()) {
                 user.setConfirmationStatus(true);
                 user.setConfirmationId(null);
-                userRepository.save(user);
+                userService.save(user);
             }
             message = "akobet.register.success";
         }
@@ -75,7 +75,7 @@ public class UserController extends WebMvcConfigurerAdapter {
         user.setConfirmationId(createConfirmationID());
         emailService.send(user.getEmail(), "AkoBet Account Confirmation Link",
                 "http://localhost:8080/confirm?id=" + user.getConfirmationId());
-        userRepository.save(user);
+        userService.save(user);
         model.addAttribute("message", "akobet.register.checkEmail");
         return "message";
     }
@@ -91,8 +91,8 @@ public class UserController extends WebMvcConfigurerAdapter {
     }
 
     private boolean checkUnique(User user, BindingResult bindingResult) {
-        User userByMail = userRepository.findUserByEmail(user.getEmail());
-        User userByName = userRepository.findUserByUsername(user.getUsername());
+        User userByMail = userService.findUserByEmail(user.getEmail());
+        User userByName = userService.findUserByUsername(user.getUsername());
 
         if (userByMail != null) {
             bindingResult.rejectValue("email", "akobet.register.emailExists", "Email just exists");
