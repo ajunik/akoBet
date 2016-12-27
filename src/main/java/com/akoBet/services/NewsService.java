@@ -11,8 +11,6 @@ public interface NewsService {
 
     List<News> findAll();
 
-    List<News> findLatest5();
-
     News findById(Long id);
 
     News create(News News);

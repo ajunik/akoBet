@@ -1,16 +1,19 @@
 package com.akoBet.entity;
 
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * Created by Arek on 27.12.2016.
  */
+@Entity
+@Table(name = "NEWS")
 public class News {
 
+    @Id
+    @GeneratedValue(generator = "news_id", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "news_id", sequenceName = "news_id_seq")
     private Long id;
     private String title;
     private String content;

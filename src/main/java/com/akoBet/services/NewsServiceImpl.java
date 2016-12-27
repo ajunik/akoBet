@@ -3,7 +3,6 @@ package com.akoBet.services;
 import com.akoBet.entity.News;
 import com.akoBet.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,11 +19,6 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public List<News> findAll() {
         return newsRepository.findAll();
-    }
-
-    @Override
-    public List<News> findLatest5() {
-        return newsRepository.findLatest5(new PageRequest(0, 5));
     }
 
     @Override
