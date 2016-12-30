@@ -2,26 +2,72 @@
 <html xmlns:th="http://www.thymeleaf.org"
 >
 <head th:include="commons/imports :: head"/>
-<body class="landing">
+<body>
 
 <header th:include="commons/elements :: title-menu"/>
-<nav id="nav" th:include="commons/elements :: main-menu"/>
-<div th:include="commons/elements :: security"/>
 
 
-<section id="banner">
-    <h2>
-        <span th:text="#{akobet.home.welcome} + ${name} + '!'" th:remove="tag">&nbsp;</span>
-    </h2>
-    <p th:text="#{akobet.home.description}"/>
-    <ul class="actions">
-        <li><a href="/login" class="button big special" th:text="#{akobet.home.login}"></a></li>
-        <li><a href="/signup" class="button big alternate" th:text="#{akobet.home.register}"></a></li>
-    </ul>
-</section>
+<div class="features-boxed">
+    <div class="container-fluid">
+        <div class="intro">
+            <h2 class="text-center" th:text="#{akobet.title}"></h2>
+            <p class="text-center" th:text="#{akobet.home.description}"></p>
+        </div>
+        <div class="row features">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+                <div class="box"><i class="fa fa-info icon"></i>
+                    <h3 class="name" th:text="#{akobet.menu.profil}"></h3>
+                    <p class="description" th:text="#{akobet.menu.profil.description}"></p><a href="/profil"
+                                                                                              class="learn-more"
+                                                                                              th:text="#{akobet.menu.profil.go}"></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+                <div class="box"><i class="fa fa-pencil icon"></i>
+                    <h3 class="name" th:text="#{akobet.menu.tips}"></h3>
+                    <p class="description" th:text="#{akobet.menu.tips.description}"></p><a href="/bet"
+                                                                                            class="learn-more"
+                                                                                            th:text="#{akobet.menu.tips.go}"></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+                <div class="box"><i class="fa fa-bar-chart icon"></i>
+                    <h3 class="name" th:text="#{akobet.menu.stats}"></h3>
+                    <p class="description" th:text="#{akobet.menu.stats.description}"></p><a href="/stats"
+                                                                                             class="learn-more"
+                                                                                             th:text="#{akobet.menu.stats.go}"></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+                <div class="box"><i class="fa fa-map-marker icon"></i>
+                    <h3 class="name" th:text="#{akobet.menu.map}"></h3>
+                    <p class="description" th:text="#{akobet.menu.map.description}"></p><a href="/map"
+                                                                                           class="learn-more"
+                                                                                           th:text="#{akobet.menu.map.go}"></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+                <div class="box"><i class="fa fa-newspaper-o icon"></i>
+                    <h3 class="name" th:text="#{akobet.menu.news}"></h3>
+                    <p class="description" th:text="#{akobet.menu.news.description}"></p><a href="/news"
+                                                                                            class="learn-more"
+                                                                                            th:text="#{akobet.menu.news.go}"></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+                <div class="box"><i class="fa fa-sign-in icon"></i>
+                    <h3 class="name" th:text="#{akobet.home.login}"></h3>
+                    <p class="description" th:text="#{akobet.home.login.description}"></p><a href="/login"
+                                                                                             class="learn-more"
+                                                                                             th:text="#{akobet.home.login.go}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-<footer id="footer" th:include="commons/imports :: footer"/>
+<footer th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>
 </body>
 </html>

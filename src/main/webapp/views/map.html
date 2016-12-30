@@ -1,7 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       ng-app="ionic.example">
-<head th:include="commons/imports :: head"/>
+<head th:fragment="head">
+    <title>akoBET</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/map.css"/>
+    <link rel="stylesheet" href="//code.ionicframework.com/nightly/css/ionic.css"/>
+</head>
 <body ng-controller="MapCtrl">
 
 <header id="header" th:include="commons/elements :: title-menu"/>
@@ -13,7 +20,7 @@
 
 
     <ion-header-bar class="bar-dark">
-        <h1 class="title">Map</h1>
+        <h1 class="title" th:text="#{akobet.menu.map}"></h1>
     </ion-header-bar>
     <ion-content>
         <div id="map" data-tap-disabled="true"></div>
@@ -27,6 +34,7 @@
 
 
 <footer id="footer" th:include="commons/imports :: footer"/>
+
 <script src="//maps.googleapis.com/maps/api/js?callback=myMap"></script>
 <script src="https://code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
 <script src="js/map.js"></script>

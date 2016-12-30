@@ -1,27 +1,28 @@
 <head th:fragment="head" xmlns:th="http://www.w3.org/1999/xhtml">
     <title>akoBet</title>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/map.css"/>
-    <link rel="stylesheet" href="//code.ionicframework.com/nightly/css/ionic.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/Features-Boxed.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/Footer-Dark.css"/>
 </head>
 
-<footer th:fragment="footer">
-    <div class="inner">
-        <ul class="copyright">
-            <li>&copy; akoBet</li>
-        </ul>
+<th:block th:fragment="footer">
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <p class="copyright">akoBET© 2017</p>
+            </div>
+        </footer>
     </div>
-</footer>
+</th:block>
+
 
 <th:block th:fragment="scripts">
     <script src="js/jquery.min.js"></script>
-    <script src="js/skel.min.js"></script>
-    <script src="js/util.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
 </th:block>

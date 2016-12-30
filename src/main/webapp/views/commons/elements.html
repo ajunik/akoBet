@@ -1,16 +1,7 @@
 <header th:fragment="title-menu">
-    <h1>
-        <a href="/" th:text="#{akobet.title}"></a>
-    </h1>
-    <a href="#nav" th:text="#{akobet.menu}"></a>
-
-    <ul style="float:right">
-        <responsive-row><a th:href="@{__${#httpServletRequest.requestURI}__?lang=pl}" class="button small special"
-                           th:text="#{akobet.pl}"></a>
-            <a th:href="@{__${#httpServletRequest.requestURI}__?lang=en}" class="button small"
-               th:text="#{akobet.en}"></a></responsive-row>
-    </ul>
+    <img class="img-responsive" style="width:2000px; max-width:100%;" src="images/ball-pitch-banner.jpg"/>
 </header>
+
 
 <block th:fragment="security">
     <div sec:authorize="hasRole('ROLE_USER')">
