@@ -3,13 +3,12 @@
 </header>
 
 
-<block th:fragment="security">
+<block th:fragment="logout">
     <div sec:authorize="hasRole('ROLE_USER')">
+        <h3 class="name" th:text="#{akobet.home.logout}"></h3>
+        <p class="description" th:text="#{akobet.home.logout.description}"></p>
 
-
-        <span th:text="#{akobet.home.loginAs} + ${name}"/>
-
-    <form id="logout" th:action="@{/logout} " method="post">
+        <form id="logout" th:action="@{/logout}" method="post">
     </form>
     <a href="#" onclick="document.getElementById('logout').submit()" th:text="#{akobet.home.logout}"></a>
     </div>

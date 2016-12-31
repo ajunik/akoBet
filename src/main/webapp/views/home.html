@@ -14,7 +14,7 @@
             <p class="text-center" th:text="#{akobet.home.description}"></p>
         </div>
         <div class="row features">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
                 <div class="box"><i class="fa fa-info icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.profil}"></h3>
                     <p class="description" th:text="#{akobet.menu.profil.description}"></p><a href="/profil"
@@ -22,7 +22,7 @@
                                                                                               th:text="#{akobet.menu.profil.go}"></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
                 <div class="box"><i class="fa fa-pencil icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.tips}"></h3>
                     <p class="description" th:text="#{akobet.menu.tips.description}"></p><a href="/bet"
@@ -30,7 +30,7 @@
                                                                                             th:text="#{akobet.menu.tips.go}"></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
                 <div class="box"><i class="fa fa-bar-chart icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.stats}"></h3>
                     <p class="description" th:text="#{akobet.menu.stats.description}"></p><a href="/stats"
@@ -54,7 +54,12 @@
                                                                                             th:text="#{akobet.menu.news.go}"></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
+                <div class="box"><i class="fa fa-sign-in icon"></i>
+                    <div th:include="commons/elements :: logout"/>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="!isAuthenticated()">
                 <div class="box"><i class="fa fa-sign-in icon"></i>
                     <h3 class="name" th:text="#{akobet.home.login}"></h3>
                     <p class="description" th:text="#{akobet.home.login.description}"></p><a href="/login"
