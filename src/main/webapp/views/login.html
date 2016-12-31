@@ -5,7 +5,7 @@
 <body>
 
 <header id="header" th:include="commons/elements :: title-menu"/>
-<nav id="nav" th:include="commons/elements :: main-menu"/>
+<th:block th:include="commons/elements :: navigate"/>
 
 <section id="main" class="wrapper">
     <header class="major special">
@@ -25,6 +25,9 @@
             <div style="text-align:center; margin:auto;">
                 <button type="submit" th:text="#{akobet.login}"/>
             </div>
+            <p th:text="#{akobet.login.noAccount}">Nie masz konta?</p>&nbsp;&nbsp;<a href="/signup"
+                                                                                     class="learn-more"
+                                                                                     th:text="#{akobet.home.register.go}"></a>
         </form>
     </div>
 </section>

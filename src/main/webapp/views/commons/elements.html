@@ -2,6 +2,9 @@
     <img class="img-responsive" style="width:2000px; max-width:100%;" src="images/ball-pitch-banner.jpg"/>
 </header>
 
+<block th:fragment="navigate">
+    <a href="/"><i class="fa fa-home icon"></i></a>
+</block>
 
 <block th:fragment="logout">
     <div sec:authorize="hasRole('ROLE_USER')">
