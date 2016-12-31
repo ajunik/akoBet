@@ -16,6 +16,13 @@
             <div class="container">
                 <p class="copyright">akoBET© 2017</p>
             </div>
+            <ul style="float:right; margin-right:20px;">
+                <responsive-row><a th:href="@{__${#httpServletRequest.requestURI}__?lang=pl}"
+                                   class="button small special"
+                                   th:text="#{akobet.pl}"></a>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__?lang=en}" class="button small"
+                       th:text="#{akobet.en}"></a></responsive-row>
+            </ul>
         </footer>
     </div>
 </th:block>

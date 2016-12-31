@@ -13,19 +13,3 @@
     <a href="#" onclick="document.getElementById('logout').submit()" th:text="#{akobet.home.logout}"></a>
     </div>
 </block>
-
-<nav th:fragment="main-menu">
-    <ul class="links">
-        <li><a href="#" class="button" th:text="#{akobet.menu.home}"></a></li>
-        <li sec:authorize="hasRole('ROLE_USER')"><a href="/profil" class="button" th:text="#{akobet.menu.profil}"></a>
-        </li>
-        <li sec:authorize="hasRole('ROLE_USER')"><a href="/tips" class="button" th:text="#{akobet.menu.tips}"></a></li>
-        <li sec:authorize="hasRole('ROLE_USER')"><a href="/league" class="button" th:text="#{akobet.menu.league}"></a>
-        </li>
-        <li><a href="/news" class="button" th:text="#{akobet.menu.news}"></a></li>
-        <li><a href="/map" class="button" th:text="#{akobet.menu.map}"></a></li>
-        <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin" class="button" th:text="#{akobet.menu.admin}"></a>
-        </li>
-
-    </ul>
-</nav>
