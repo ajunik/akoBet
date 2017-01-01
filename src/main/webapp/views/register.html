@@ -8,53 +8,45 @@
 <th:block th:include="commons/elements :: navigate"/>
 
 
-<section id="main" class="wrapper">
-    <div class="container">
-
-        <header class="major special">
-            <h2 th:text="#{akobet.home.register}"></h2>
-        </header>
-
-        <div class="container" style="width:500px;">
-            <form action="#" th:action="@{/signup}" th:object="${user}"
-                  method="post">
-                <table>
-                    <tr>
-                        <td th:text="#{akobet.login.username}"></td>
-                        <td><input type="text" th:field="*{username}"/></td>
-                        <td th:if="${#fields.hasErrors('username')}"
-                            th:errors="*{username}">login Error
-                        </td>
-                    </tr>
-                    <tr>
-                        <td th:text="#{akobet.login.password}"></td>
-                        <td><input type="password" th:field="*{password1}"/></td>
-                        <td th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}">Password error</td>
-                    </tr>
-                    <tr>
-                        <td th:text="#{akobet.login.repeat}"></td>
-                        <td><input type="password" th:field="*{password2}"/></td>
-                        <td th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">Password error</td>
-                    </tr>
-                    <tr>
-                        <td th:text="#{akobet.login.email}"></td>
-                        <td><input type="email" th:field="*{email}"/></td>
-                        <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
-                            Error
-                        </td>
-                    </tr>
-                    <tr>
-                        <td th:text="#{akobet.login.favorite}"></td>
-                        <td><input type="text" th:field="*{favoriteClub}"/></td>
-                    </tr>
-                </table>
-                <div style="text-align:center; margin:auto;">
-                    <button type="submit" th:text="#{akobet.register}"></button>
-                </div>
-            </form>
-        </div>
+<div class="register">
+    <div class="form-container">
+        <form action="#" th:action="@{/signup}" th:object="${user}" method="post">
+            <h2 class="text-center" th:text="#{akobet.home.register}"></h2>
+            <div class="form-group">
+                <input class="form-control" type="text" th:field="*{username}"
+                       th:placeholder="#{akobet.login.username}"/>
+                <span th:if="${#fields.hasErrors('username')}"
+                      th:errors="*{username}" style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" th:field="*{password1}"
+                       th:placeholder="#{akobet.login.password}"/>
+                <span th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}"
+                      style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" th:field="*{password2}"
+                       th:placeholder="#{akobet.login.repeat}"/>
+                <span th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}"
+                      style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="email" th:field="*{email}" th:placeholder="#{akobet.login.email}"/>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" th:field="*{favoriteClub}"
+                       th:placeholder="#{akobet.login.favorite}"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit" th:text="#{akobet.register}"></button>
+            </div>
+            <span th:text="#{akobet.register.alreadyHasAccount}"></span> <a href="/login"
+                                                                            class="learn-more"
+                                                                            th:text="#{akobet.home.login.go}"></a>
+        </form>
     </div>
-</section>
+</div>
 
 <footer id="footer" th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>

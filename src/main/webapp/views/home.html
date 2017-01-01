@@ -16,7 +16,8 @@
         <div class="row features">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
                 <div class="box"><i class="fa fa-info icon"></i>
-                    <h3 class="name" th:text="#{akobet.menu.profil}"></h3>
+                    <h3 class="name"><span th:text="#{akobet.home.welcome} + ${name} + '!'"
+                                           th:remove="tag">&nbsp;</span></h3>
                     <p class="description" th:text="#{akobet.menu.profil.description}"></p><a href="/profil"
                                                                                               class="learn-more"
                                                                                               th:text="#{akobet.menu.profil.go}"></a>

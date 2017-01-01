@@ -7,8 +7,8 @@
 <header id="header" th:include="commons/elements :: title-menu"/>
 
 <div class="login-clean">
-    <div th:if="${param.error}" th:text="#{akobet.login.invalid}"></div>
     <form th:action="@{/login}" method="post">
+        <div th:if="${param.error}" th:text="#{akobet.login.invalid}" style="color:red; text-align:center;"></div>
         <div style="text-align:center; padding-bottom:10px;"><h2 th:text="#{akobet.home.login}"></h2></div>
         <div class="form-group">
             <input class="form-control" type="text" name="username"
