@@ -56,7 +56,6 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
         }
         List<UserRole> ur = new ArrayList<UserRole>();
         ur.add(new UserRole("ROLE_ADMIN"));
-        ur.add(new UserRole("ROLE_USER"));
 
         for (UserRole urole : ur) {
             admin.addUserRole(urole);

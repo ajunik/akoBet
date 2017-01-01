@@ -10,8 +10,9 @@
 <div class="features-boxed">
     <div class="container-fluid">
         <div class="intro">
-            <h2 class="text-center" th:text="#{akobet.title}"></h2>
-            <p class="text-center" th:text="#{akobet.home.description}"></p>
+            <h2 class="text-center" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{akobet.menu.admin}"/>
+            <h2 class="text-center" sec:authorize="!hasRole('ROLE_ADMIN')" th:text="#{akobet.title}"/>
+            <p class="text-center" sec:authorize="!hasRole('ROLE_ADMIN')" th:text="#{akobet.home.description}"/>
         </div>
         <div class="row features">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
@@ -39,7 +40,7 @@
                                                                                              th:text="#{akobet.menu.stats.go}"></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="!hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-map-marker icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.map}"></h3>
                     <p class="description" th:text="#{akobet.menu.map.description}"></p><a href="/map"
@@ -47,7 +48,7 @@
                                                                                            th:text="#{akobet.menu.map.go}"></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="!hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-newspaper-o icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.news}"></h3>
                     <p class="description" th:text="#{akobet.menu.news.description}"></p><a href="/news"
@@ -55,23 +56,64 @@
                                                                                             th:text="#{akobet.menu.news.go}"></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
-                <div class="box"><i class="fa fa-sign-in icon"></i>
-                    <div th:include="commons/elements :: logout"/>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="box"><i class="fa fa-male icon"></i>
+                    <h3 class="name" th:text="#{akobet.menu.admin.users}"></h3>
+                    <p class="description" th:text="#{akobet.menu.admin.users.description}"></p><a href="/admin/add"
+                                                                                                   class="learn-more"
+                                                                                                   th:text="#{akobet.menu.admin.add}"></a>&nbsp;&nbsp;
+                    <a
+                            href="/admin/manage"
+                            class="learn-more"
+                            th:text="#{akobet.menu.admin.manage}"></a>
                 </div>
             </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="box"><i class="fa fa-newspaper-o icon"></i>
+                    <h3 class="name" th:text="#{akobet.menu.news}"></h3>
+                    <p class="description" th:text="#{akobet.menu.admin.news.description}"></p><a href="/admin/addNews"
+                                                                                                  class="learn-more"
+                                                                                                  th:text="#{akobet.menu.admin.add}"></a>&nbsp;&nbsp;
+                    <a
+                            href="/admin/manageNews"
+                            class="learn-more"
+                            th:text="#{akobet.menu.admin.manage}"></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="box"><i class="fa fa-plus icon"></i>
+                    <h3 class="name" th:text="#{akobet.menu.admin.matches}"></h3>
+                    <p class="description" th:text="#{akobet.menu.admin.matches.description}"></p><a
+                            href="/admin/addMatches"
+                            class="learn-more"
+                            th:text="#{akobet.menu.admin.add}"></a>
+                </div>
+            </div>
+
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="!isAuthenticated()">
                 <div class="box"><i class="fa fa-sign-in icon"></i>
                     <h3 class="name" th:text="#{akobet.home.login}"></h3>
                     <p class="description" th:text="#{akobet.home.login.description}"></p><a href="/login"
                                                                                              class="learn-more"
-                                                                                             th:text="#{akobet.home.login}"></a>&nbsp;&nbsp;<a
+                                                                                             th:text="#{akobet.home.login}"></a>&nbsp;&nbsp;
+                    <a
                             href="/signup"
                             class="learn-more"
                             th:text="#{akobet.home.register}"></a>
 
                 </div>
             </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
+                <div class="box"><i class="fa fa-sign-out icon"></i>
+                    <div th:include="commons/elements :: logout"/>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="box"><i class="fa fa-sign-out icon"></i>
+                    <div th:include="commons/elements :: logout"/>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
