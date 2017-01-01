@@ -5,32 +5,29 @@
 <body>
 
 <header id="header" th:include="commons/elements :: title-menu"/>
-<th:block th:include="commons/elements :: navigate"/>
 
-<section id="main" class="wrapper">
-    <header class="major special">
-        <h2 th:text="#{akobet.home.login}"></h2>
-    </header>
-    <div class="container" style="width:250px;">
-        <div th:if="${param.error}" th:text="#{akobet.login.invalid}"></div>
-        <form th:action="@{/login}" method="post">
-            <div>
-                <label><span th:text="#{akobet.login.username}"/><input type="text" name="username"/>
-                </label>
-            </div>
-            <div>
-                <label><span th:text="#{akobet.login.password}"/> <input type="password" name="password"/>
-                </label>
-            </div>
-            <div style="text-align:center; margin:auto;">
-                <button type="submit" th:text="#{akobet.login}"/>
-            </div>
-            <p th:text="#{akobet.login.noAccount}">Nie masz konta?</p>&nbsp;&nbsp;<a href="/signup"
-                                                                                     class="learn-more"
-                                                                                     th:text="#{akobet.home.register.go}"></a>
-        </form>
-    </div>
-</section>
+<div class="login-clean">
+    <div th:if="${param.error}" th:text="#{akobet.login.invalid}"></div>
+    <form th:action="@{/login}" method="post">
+        <div style="text-align:center; padding-bottom:10px;"><h2 th:text="#{akobet.home.login}"></h2></div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="username"
+                   th:placeholder="#{akobet.login.username}"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="password" name="password"
+                   th:placeholder="#{akobet.login.password}"/>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit" th:text="#{akobet.login}"></button>
+        </div>
+        <span th:text="#{akobet.login.noAccount}"></span> <a href="/signup"
+                                                             class="learn-more"
+                                                             th:text="#{akobet.home.register.go}"></a>
+    </form>
+
+</div>
+
 <footer id="footer" th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>
 </body>
