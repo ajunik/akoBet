@@ -12,13 +12,21 @@
             <h2 class="text-center" th:text="#{akobet.menu.news}"></h2>
         </div>
         <div class="row articles">
-            <div class="col-md-4 col-sm-6 item" ng-repeat="news in news">
+            <div class="col-md-4 col-sm-6 item"
+                 ng-repeat="news in news | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
                 <a href="#"><img class="img-responsive" src="{{news.photo}}"/></a>
                 <h3 class="name">{{news.title}}</h3>
                 <p class="description">{{news.introduce}}</p><a href="/newsView/{{news.id}}"
                                                                 class="action"><i
                     class="fa fa-arrow-circle-right"></i></a></div>
         </div>
+        <div class="row" style="text-align:center; padding:20px;">
+            <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
+                    th:text="#{akobet.news.newer}"></button>
+            <button class="btn btn-primary" ng-disabled="currentPage >= news.length/pageSize - 1"
+                    ng-click="currentPage=currentPage+1" th:text="#{akobet.news.older}"></button>
+        </div>
+
     </div>
 </div>
 

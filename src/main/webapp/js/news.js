@@ -1,9 +1,17 @@
 /**
  * Created by Arek on 02.01.2017.
  */
-angular.module('NewsApp', [])
+var app = angular.module('NewsApp', []);
 
-    .controller('NewsCtrl', function ($scope, $http) {
+app.controller('NewsCtrl', function ($scope, $http) {
+    $scope.currentPage = 0;
+    $scope.pageSize = 6;
+    $scope.q = '';
+
+    $scope.numberOfPages = function () {
+        return Math.ceil($scope.news.length / $scope.pageSize);
+    };
+
 
         $http.get('/rest/news')
             .then(function (success) {
@@ -13,3 +21,10 @@ angular.module('NewsApp', [])
             });
 
     });
+
+app.filter('startFrom', function () {
+    return function (input, start) {
+        start = +start;
+        return input.slice(start);
+    }
+});
