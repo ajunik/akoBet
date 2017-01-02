@@ -22,6 +22,12 @@
                        th:placeholder="#{akobet.news.add.photo}"/>
             </div>
             <div class="form-group">
+                <textarea cols="10" rows="5" class="form-control" type="text" th:field="*{introduce}"
+                          th:placeholder="#{akobet.news.add.introduce}" style="height:100px;"/>
+                <span th:if="${#fields.hasErrors('introduce')}" th:errors="*{introduce}"
+                      style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
                 <textarea cols="40" rows="5" class="form-control" type="text" th:field="*{content}"
                           th:placeholder="#{akobet.news.add.content}" style="height:300px;"/>
                 <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"

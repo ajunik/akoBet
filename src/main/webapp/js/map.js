@@ -15,7 +15,7 @@ angular.module('ionic.example', ['ionic'])
             var markIcon = {
                 url: 'http://images.clipartpanda.com/google-location-icon-color_icons_green_home.png',
                 scaledSize: new google.maps.Size(30, 50)
-            }
+            };
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,

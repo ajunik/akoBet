@@ -16,15 +16,24 @@ public class News {
     @GeneratedValue(generator = "news_id", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "news_id", sequenceName = "news_id_seq")
     private Long id;
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 100)
     private String title;
     @Size(min = 1, max = 10000)
     private String content;
+    @Size(min = 1, max = 1000)
+    private String introduce;
     private String author;
     private String photo;
     private String createdDate;
     private String updatedDate;
 
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
 
     public String getPhoto() {
         return photo;

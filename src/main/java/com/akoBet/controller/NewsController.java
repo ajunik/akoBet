@@ -39,4 +39,9 @@ public class NewsController {
         model.addAttribute("message", "akobet.news.addSuccess");
         return "message";
     }
+
+    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    public String showNews() {
+        return "news";
+    }
 }

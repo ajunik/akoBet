@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/Login-Form.css"/>
     <link rel="stylesheet" href="/css/Footer-Dark.css"/>
     <link rel="stylesheet" href="/css/Registration-Form.css"/>
+    <link rel="stylesheet" href="/css/Article-List.css"/>
 </head>
 
 <th:block th:fragment="footer">
@@ -18,11 +19,11 @@
                 <p class="copyright">akoBET© 2017</p>
             </div>
             <ul style="float:right; margin-right:20px;">
-                <responsive-row><a th:href="@{__${#httpServletRequest.requestURI}__?lang=pl}"
-                                   class="button small special"
-                                   th:text="#{akobet.pl}"></a>
-                    <a th:href="@{__${#httpServletRequest.requestURI}__?lang=en}" class="button small"
-                       th:text="#{akobet.en}"></a></responsive-row>
+                <responsive-row><a th:href="@{__${#httpServletRequest.requestURI}__?lang=pl}"><img class="img"
+                                                                                                   src="/images/pl.png"/></a>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__?lang=en}"><img class="img"
+                                                                                       src="/images/en.png"/></a>
+                </responsive-row>
             </ul>
         </footer>
     </div>

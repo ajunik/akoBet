@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body ng-app="NewsApp" ng-controller="NewsCtrl">
+
+<header id="header" th:include="commons/elements :: title-menu"/>
+
+<div class="article-list">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center" th:text="#{akobet.menu.news}"></h2>
+        </div>
+        <div class="row articles">
+            <div class="col-md-4 col-sm-6 item" ng-repeat="news in news">
+                <a href="#"><img class="img-responsive" src="{{news.photo}}"/></a>
+                <h3 class="name">{{news.title}}</h3>
+                <p class="description">{{news.introduce}}</p><a href="#"
+                                                                class="action"><i
+                    class="fa fa-arrow-circle-right"></i></a></div>
+        </div>
+    </div>
+</div>
+
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+<script src="js/news.js"></script>
+</body>
+</html>
