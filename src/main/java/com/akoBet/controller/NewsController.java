@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -43,5 +44,14 @@ public class NewsController {
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     public String showNews() {
         return "news";
+    }
+
+    @RequestMapping(value = "/newsView/{id}", method = RequestMethod.GET)
+    public String showArticle(@PathVariable Long id, Model model) {
+
+        News article = newsService.findById(id);
+        model.addAttribute("article", article);
+
+        return "newsView";
     }
 }

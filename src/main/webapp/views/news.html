@@ -15,7 +15,7 @@
             <div class="col-md-4 col-sm-6 item" ng-repeat="news in news">
                 <a href="#"><img class="img-responsive" src="{{news.photo}}"/></a>
                 <h3 class="name">{{news.title}}</h3>
-                <p class="description">{{news.introduce}}</p><a href="#"
+                <p class="description">{{news.introduce}}</p><a href="/newsView/{{news.id}}"
                                                                 class="action"><i
                     class="fa fa-arrow-circle-right"></i></a></div>
         </div>

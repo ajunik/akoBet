@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body>
+
+<header id="header" th:include="commons/elements :: title-menu"/>
+
+<div class="article-clean">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="intro" style="padding-bottom:10px;">
+                    <h1 class="text-center" th:text="${article.title}"></h1>
+                    <p class="text-center"><span class="by" th:text="#{akobet.news.add.by}"></span><span
+                            th:text="${article.author}"></span>, <span class="date"
+                                                                       th:text="${article.createdDate}"></span></p><img
+                        class="img-responsive" th:src="${article.photo}" style="width:750px;"/></div>
+                <div class="text">
+                    <p th:text="${article.introduce}" style="font-weight:bold;"></p>
+                    <p th:text="${article.content}" style="padding-bottom:10px;"></p>
+                    <div style="padding-bottom:15px; text-align:center">
+                        <i class="fa fa-arrow-left icon"></i> <a href="/news" th:text="#{akobet.news.back}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+</body>
+</html>
