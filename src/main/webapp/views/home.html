@@ -71,11 +71,11 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-newspaper-o icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.news}"></h3>
-                    <p class="description" th:text="#{akobet.menu.admin.news.description}"></p><a href="/admin/addNews"
+                    <p class="description" th:text="#{akobet.menu.admin.news.description}"></p><a href="/admin/news/add"
                                                                                                   class="learn-more"
                                                                                                   th:text="#{akobet.menu.admin.add}"></a>&nbsp;&nbsp;
                     <a
-                            href="/admin/manageNews"
+                            href="/admin/news/manage"
                             class="learn-more"
                             th:text="#{akobet.menu.admin.manage}"></a>
                 </div>

@@ -2,25 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org"
 >
 <head th:include="commons/imports :: head"/>
-<body>
+<body style="background-color: #eee">
 
 <header id="header" th:include="commons/elements :: title-menu"/>
-<div th:include="commons/elements :: security"/>
-<nav id="nav" th:include="commons/elements :: main-menu"/>
 
-
-<section id="main" class="wrapper">
-    <div class="container">
-        <h1>
+<div class="jumbotron" style="text-align:center">
+    <h3>
             <span th:text="#{${message}}" th:remove="tag">&nbsp;</span>
-        </h1>
-        <ul class="actions">
-            <li><a href="/login" class="button small special" th:text="#{akobet.home.login}"></a></li>
-            <li><a href="/signup" class="button small alt" th:text="#{akobet.home.register}"></a></li>
-            <li><a href="/profil" class="button small" th:text="#{akobet.menu.profil}"></a></li>
-        </ul>
+    </h3>
+    <a href="/" class="button small special" th:text="#{akobet.home.go}"></a>
     </div>
-</section>
 
 <footer id="footer" th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body>
+
+<header id="header" th:include="commons/elements :: title-menu"/>
+
+
+<div class="register">
+    <div class="form-container">
+        <form action="#" th:action="@{/admin/news/add}" th:object="${news}" method="post">
+            <h2 class="text-center" th:text="#{akobet.news.add.head}"></h2>
+            <div class="form-group">
+                <input class="form-control" type="text" th:field="*{title}"
+                       th:placeholder="#{akobet.news.add.title}"/>
+                <span th:if="${#fields.hasErrors('title')}"
+                      th:errors="*{title}" style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="url" th:field="*{photo}"
+                       th:placeholder="#{akobet.news.add.photo}"/>
+            </div>
+            <div class="form-group">
+                <textarea cols="40" rows="5" class="form-control" type="text" th:field="*{content}"
+                          th:placeholder="#{akobet.news.add.content}" style="height:300px;"/>
+                <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"
+                      style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit" th:text="Dodaj"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+</body>
+</html>

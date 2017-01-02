@@ -1,6 +1,7 @@
 package com.akoBet.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,11 +16,23 @@ public class News {
     @GeneratedValue(generator = "news_id", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "news_id", sequenceName = "news_id_seq")
     private Long id;
+    @Size(min = 1, max = 30)
     private String title;
+    @Size(min = 1, max = 10000)
     private String content;
-    private User author;
+    private String author;
+    private String photo;
     private String createdDate;
     private String updatedDate;
+
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public Long getId() {
         return id;
@@ -45,11 +58,11 @@ public class News {
         this.content = content;
     }
 
-    public User getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(User author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
@@ -82,5 +95,10 @@ public class News {
 
     public void setUpdatedDate(String updatedDate) {
         this.updatedDate = updatedDate;
+    }
+
+    @Override
+    public String toString() {
+        return title + " " + content;
     }
 }
