@@ -28,17 +28,51 @@ public class NewsController {
         return "addNews";
     }
 
-    @RequestMapping(value = "/admin/news/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/news/add", method = {RequestMethod.PUT, RequestMethod.POST})
     public String add(@Valid News news, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "addNews";
+        } else {
+            User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (news.getId() == null) {
+                news.setAuthor(user.getUsername());
+            }
+            model.addAttribute("news", news);
+            newsService.create(news);
+            model.addAttribute("message", "akobet.news.addSuccess");
+            return "message";
         }
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        news.setAuthor(user.getUsername());
-        model.addAttribute("news", news);
-        newsService.create(news);
-        model.addAttribute("message", "akobet.news.addSuccess");
+    }
+
+    @RequestMapping(value = "/admin/news/manage", method = RequestMethod.GET)
+    public String showManage() {
+        return "manageNews";
+    }
+
+    @RequestMapping(value = "/admin/news/edit/{id}", method = RequestMethod.GET)
+    public String showEditForm(@PathVariable Long id, Model model) {
+
+        News news = newsService.findById(id);
+        if (news == null) {
+            model.addAttribute("message", "akobet.news.notExists");
+            return "message";
+        } else {
+            model.addAttribute("news", news);
+            return "addNews";
+        }
+    }
+
+    @RequestMapping(value = "/admin/news/delete/{id}")
+    public String deleteNews(@PathVariable Long id, Model model) {
+
+        if (newsService.findById(id) == null) {
+            model.addAttribute("message", "akobet.news.notExists");
+        } else {
+            newsService.deleteById(id);
+            model.addAttribute("message", "akobet.news.deleteSuccess");
+        }
         return "message";
+
     }
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)

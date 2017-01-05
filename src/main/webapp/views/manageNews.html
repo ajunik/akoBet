@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body ng-app="NewsApp" ng-controller="NewsCtrl">
+
+<header id="header" th:include="commons/elements :: title-menu"/>
+
+<div class="container">
+    <div class="intro" style="padding-bottom:20px;">
+        <h2 class="text-center" th:text="#{akobet.news.manage}"></h2>
+    </div>
+    <div class="list-group" ng-repeat="news in news | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+        <li class="list-group-item clearfix">{{news.title}}
+            <span class="pull-right">
+                <button class="btn btn-info" style="background-color:#337ab7; border-color:#2e6da4;"><a
+                        href="/admin/news/edit/{{news.id}}" style="color:#fff;"
+                        th:text="#{akobet.news.edit}"></a></button>
+                <button class="btn btn-info" style="background-color:#337ab7; border-color:#2e6da4;"><a
+                        href="/admin/news/delete/{{news.id}}" style="color:#fff;"
+                        th:text="#{akobet.news.delete}"></a></button>
+                    </span>
+        </li>
+    </div>
+    <div class="row" style="text-align:center; padding:20px;">
+        <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
+                th:text="#{akobet.news.newer}"></button>
+        <button class="btn btn-primary" ng-disabled="currentPage >= news.length/pageSize - 1"
+                ng-click="currentPage=currentPage+1" th:text="#{akobet.news.older}"></button>
+    </div>
+
+</div>
+
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+<script src="/js/news.js"></script>
+</body>
+</html>
