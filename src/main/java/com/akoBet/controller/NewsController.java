@@ -25,13 +25,13 @@ public class NewsController {
 
     @RequestMapping(value = "/admin/news/add", method = RequestMethod.GET)
     public String showForm(News news) {
-        return "addNews";
+        return "admin/news/addNews";
     }
 
     @RequestMapping(value = "/admin/news/add", method = {RequestMethod.PUT, RequestMethod.POST})
     public String add(@Valid News news, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "addNews";
+            return "admin/news/addNews";
         } else {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             if (news.getId() == null) {
@@ -46,7 +46,7 @@ public class NewsController {
 
     @RequestMapping(value = "/admin/news/manage", method = RequestMethod.GET)
     public String showManage() {
-        return "manageNews";
+        return "admin/news/manageNews";
     }
 
     @RequestMapping(value = "/admin/news/edit/{id}", method = RequestMethod.GET)
@@ -58,7 +58,7 @@ public class NewsController {
             return "message";
         } else {
             model.addAttribute("news", news);
-            return "addNews";
+            return "admin/news/addNews";
         }
     }
 
@@ -77,7 +77,7 @@ public class NewsController {
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     public String showNews() {
-        return "news";
+        return "user/news/news";
     }
 
     @RequestMapping(value = "/newsView/{id}", method = RequestMethod.GET)
@@ -86,6 +86,6 @@ public class NewsController {
         News article = newsService.findById(id);
         model.addAttribute("article", article);
 
-        return "newsView";
+        return "user/news/newsView";
     }
 }

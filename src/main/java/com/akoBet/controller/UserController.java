@@ -38,7 +38,7 @@ public class UserController extends WebMvcConfigurerAdapter {
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String showForm(User register) {
-        return "register";
+        return "user/forms/register";
     }
 
     @RequestMapping("/confirm")
@@ -62,7 +62,7 @@ public class UserController extends WebMvcConfigurerAdapter {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String checkPerson(@Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors() || !checkUnique(user, bindingResult) || !processPasswords(user, bindingResult)) {
-            return "register";
+            return "user/forms/register";
         }
 
         List<UserRole> ur = new ArrayList<UserRole>();

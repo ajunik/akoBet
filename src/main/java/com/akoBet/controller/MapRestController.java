@@ -22,7 +22,7 @@ public class MapRestController {
 
     @RequestMapping(value = "/map")
     public String getMap() {
-        return "map";
+        return "user/map/map";
     }
 
     @RequestMapping(value = "rest/map", method = RequestMethod.GET)

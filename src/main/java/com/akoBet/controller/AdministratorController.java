@@ -37,13 +37,13 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
 
     @RequestMapping(value = "/admin/add", method = RequestMethod.GET)
     public String add(Administrator admin) {
-        return "addAdmin";
+        return "admin/users/addAdmin";
     }
 
     @RequestMapping(value = "/admin/add", method = RequestMethod.POST)
     public String add(@Valid Administrator admin, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors() || !checkUnique(admin, bindingResult) || !processPasswords(admin, bindingResult)) {
-            return "addAdmin";
+            return "admin/users/addAdmin";
         }
         List<UserRole> ur = new ArrayList<UserRole>();
         ur.add(new UserRole("ROLE_ADMIN"));
@@ -75,7 +75,7 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
 
     @RequestMapping(value = "/admin/usersList", method = RequestMethod.GET)
     public String showUsers() {
-        return "usersList";
+        return "admin/users/usersList";
     }
 
     protected boolean processPasswords(User user, BindingResult bindingResult) {
