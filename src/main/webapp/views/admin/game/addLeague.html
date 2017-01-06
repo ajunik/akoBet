@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body>
+
+<header id="header" th:include="commons/elements :: title-menu"/>
+
+
+<div class="register">
+    <div class="form-container">
+        <form action="#" th:action="@{/admin/addLeague}" th:object="${league}" method="post">
+            <h2 class="text-center" th:text="#{akobet.admin.addLeague.title}"></h2>
+            <div class="form-group">
+                <input class="form-control" type="text" th:field="*{name}"
+                       th:placeholder="#{akobet.admin.addLeague.leagueName}"/>
+                <span th:if="${#fields.hasErrors('name')}"
+                      th:errors="*{name}" style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" th:field="*{capacity}"
+                       th:placeholder="#{akobet.admin.addLeague.capacity}"/>
+                <span th:if="${#fields.hasErrors('capacity')}" th:errors="*{capacity}"
+                      style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit" th:text="#{akobet.menu.admin.add}"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+</body>
+</html>

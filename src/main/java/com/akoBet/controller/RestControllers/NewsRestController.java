@@ -1,7 +1,7 @@
-package com.akoBet.controller;
+package com.akoBet.controller.RestControllers;
 
-import com.akoBet.entity.UserRest;
-import com.akoBet.services.UserService;
+import com.akoBet.entity.News;
+import com.akoBet.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,22 +11,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * Created by Arek on 06.01.2017.
+ * Created by Arek on 02.01.2017.
  */
 @Controller
-public class UserRestController {
+public class NewsRestController {
+
 
     @Autowired
-    UserService userService;
+    NewsService newsService;
 
 
-    @RequestMapping(value = "rest/users", method = RequestMethod.GET)
+    @RequestMapping(value = "rest/news", method = RequestMethod.GET)
     public
     @ResponseBody
-    List<UserRest> read() {
-        List<UserRest> users = userService.getUserApi();
-        return users;
+    List<News> read() {
+        List<News> news = newsService.findAll();
+        return news;
     }
-
-
 }

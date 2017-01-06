@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body ng-app="LeaguesApp" ng-controller="LeaguesCtrl">
+
+<header id="header" th:include="commons/elements :: title-menu"/>
+
+<div class="container">
+    <div class="intro" style="padding-bottom:20px;">
+        <h2 class="text-center" th:text="#{akobet.menu.admin.competition}"></h2>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{akobet.admin.addLeague.leagueName}"></th>
+                <th th:text="#{akobet.admin.addLeague.capacity}"></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="league in leagues | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <tr ng-show="user.name != 'admin'">
+                <td>{{league.name}}</td>
+                <td>{{league.capacity}}</td>
+                <td>
+                    <button class="btn btn-info" style="background-color:#337ab7; border-color:#2e6da4;"><a
+                            href="/leagues/{{league.id}}/join" style="color:#fff;"
+                            th:text="#{akobet.league.join}"></a></button>
+                    <button class="btn btn-info" style="background-color:#337ab7; border-color:#2e6da4;"><a
+                            href="/leagues/{{league.id}}/show/" style="color:#fff;" th:text="#{akobet.league.go}"></a>
+                    </button>
+                </td>
+            </tr>
+            <tr></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="text-align:center; padding:20px;">
+        <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"><i
+                class="fa fa-angle-left icon"></i></button>
+        <button class="btn btn-primary" ng-disabled="currentPage >= leagues.length/pageSize - 1"
+                ng-click="currentPage=currentPage+1"><i class="fa fa-angle-right icon"></i></button>
+    </div>
+
+</div>
+
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+<script src="/js/leagues.js"></script>
+</body>
+</html>

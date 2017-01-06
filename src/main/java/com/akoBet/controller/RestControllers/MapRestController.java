@@ -1,4 +1,4 @@
-package com.akoBet.controller;
+package com.akoBet.controller.RestControllers;
 
 import com.akoBet.entity.Bookmaker;
 import com.akoBet.services.BookmakerService;

@@ -35,7 +35,7 @@
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
                 <div class="box"><i class="fa fa-bar-chart icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.stats}"></h3>
-                    <p class="description" th:text="#{akobet.menu.stats.description}"></p><a href="/stats"
+                    <p class="description" th:text="#{akobet.menu.stats.description}"></p><a href="/leagues"
                                                                                              class="learn-more"
                                                                                              th:text="#{akobet.menu.stats.go}"></a>
                 </div>
@@ -82,11 +82,20 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-plus icon"></i>
-                    <h3 class="name" th:text="#{akobet.menu.admin.matches}"></h3>
-                    <p class="description" th:text="#{akobet.menu.admin.matches.description}"></p><a
+                    <h3 class="name" th:text="#{akobet.menu.admin.competition}"></h3>
+                    <p class="description" th:text="#{akobet.menu.admin.competition.description}"></p>
+                    <a
+                            href="/admin/addLeague"
+                            class="learn-more"
+                            th:text="#{akobet.admin.addLeague}"></a>&nbsp;
+                    <a
                             href="/admin/addMatches"
                             class="learn-more"
-                            th:text="#{akobet.menu.admin.add}"></a>
+                            th:text="#{akobet.admin.addMatches}"></a>&nbsp;
+                    <a
+                            href="/admin/addResults"
+                            class="learn-more"
+                            th:text="#{akobet.admin.addResults}"></a>
                 </div>
             </div>
 
