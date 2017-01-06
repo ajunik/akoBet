@@ -10,9 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.validation.Valid;
@@ -34,15 +34,6 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @RequestMapping(value = "/admin")
-    public ModelAndView index() {
-        ModelAndView mav = new ModelAndView("indexAdmin");
-//        List<String> roles = new ArrayList<String>();
-//        roles.add("ROLE_ADMIN");
-//        List<User> users = userService.listUsers(roles);
-//        mav.addObject("users", users);
-        return mav;
-    }
 
     @RequestMapping(value = "/admin/add", method = RequestMethod.GET)
     public String add(Administrator admin) {
@@ -67,6 +58,24 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
         userService.save(admin);
         model.addAttribute("message", "akobet.register.checkEmail");
         return "message";
+    }
+
+    @RequestMapping(value = "/admin/user/delete/{id}")
+    public String deleteNews(@PathVariable Long id, Model model) {
+
+        if (userService.findUserById(id) == null) {
+            model.addAttribute("message", "akobet.user.notExists");
+        } else {
+            userService.deleteById(id);
+            model.addAttribute("message", "akobet.user.deleteSuccess");
+        }
+        return "message";
+
+    }
+
+    @RequestMapping(value = "/admin/usersList", method = RequestMethod.GET)
+    public String showUsers() {
+        return "usersList";
     }
 
     protected boolean processPasswords(User user, BindingResult bindingResult) {

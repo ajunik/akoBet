@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body ng-app="UsersApp" ng-controller="UsersCtrl">
+
+<header id="header" th:include="commons/elements :: title-menu"/>
+
+<div class="container">
+    <div class="intro" style="padding-bottom:20px;">
+        <h2 class="text-center" th:text="#{akobet.menu.admin.users}"></h2>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th th:text="#{akobet.login.username}"></th>
+                <th th:text="#{akobet.login.email}"></th>
+                <th th:text="#{akobet.admin.users.date}">Data rejestracji</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="user in users | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <tr ng-show="user.name != 'admin'">
+                <td>{{user.name}}</td>
+                <td>{{user.mail}}</td>
+                <td>{{user.createdDate}}</td>
+                <td>
+                    <button class="btn btn-info" style="background-color:#337ab7; border-color:#2e6da4;"><a
+                            href="/admin/user/delete/{{user.id}}" style="color:#fff;"
+                            th:text="#{akobet.admin.delete}"></a></button>
+                </td>
+            </tr>
+            <tr></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="text-align:center; padding:20px;">
+        <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"><i
+                class="fa fa-angle-left icon"></i></button>
+        <button class="btn btn-primary" ng-disabled="currentPage >= users.length/pageSize - 1"
+                ng-click="currentPage=currentPage+1"><i class="fa fa-angle-right icon"></i></button>
+    </div>
+
+</div>
+
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+<script src="/js/users.js"></script>
+</body>
+</html>
