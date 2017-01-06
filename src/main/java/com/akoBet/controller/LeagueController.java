@@ -1,11 +1,15 @@
 package com.akoBet.controller;
 
 import com.akoBet.entity.League;
+import com.akoBet.entity.User;
 import com.akoBet.services.LeagueService;
+import com.akoBet.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,6 +24,9 @@ public class LeagueController {
 
     @Autowired
     private LeagueService leagueService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/admin/addLeague", method = RequestMethod.GET)
     public String showForm(League league) {
@@ -41,5 +48,27 @@ public class LeagueController {
     @RequestMapping(value = "/leagues", method = RequestMethod.GET)
     public String showLeagues() {
         return "user/leagues/list";
+    }
+
+    @RequestMapping(value = "/leagues/{id}/join")
+    public String joinLeague(@PathVariable Long id, Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        League league = leagueService.findById(id);
+
+        if (league == null) {
+            model.addAttribute("message", "akobet.league.notExists");
+            return "message";
+        } else if (user.getLeague() == null) {
+            user.setLeague(league);
+            userService.save(user);
+            Integer busyPlaces = league.getBusyPlaces();
+            league.setBusyPlaces(busyPlaces + 1);
+            leagueService.save(league);
+            model.addAttribute("message", "akobet.league.userJoined");
+            return "message";
+        } else {
+            model.addAttribute("message", "akobet.league.userAlreadyHasLeague");
+            return "message";
+        }
     }
 }

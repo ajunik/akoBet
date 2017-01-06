@@ -1,10 +1,9 @@
 package com.akoBet.entity;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -21,10 +20,20 @@ public class League {
     @Size(min = 1, max = 30)
     private String name;
 
-    @NotEmpty
+    @NotNull
     @Min(value = 4)
     @Max(value = 20)
     private Integer capacity;
+
+    private Integer busyPlaces = 0;
+
+    public Integer getBusyPlaces() {
+        return busyPlaces;
+    }
+
+    public void setBusyPlaces(Integer busyPlaces) {
+        this.busyPlaces = busyPlaces;
+    }
 
     public Long getId() {
         return id;

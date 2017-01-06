@@ -13,7 +13,6 @@
             <h2 class="text-center" th:text="#{akobet.news.add.head}"></h2>
             <div class="form-group">
                 <input type="hidden" th:field="*{id}" th:value="${news.id}"/>
-                <input type="hidden" th:field="*{id}" th:value="${news.id}"/>
                 <input class="form-control" type="text" th:field="*{title}"
                        th:placeholder="#{akobet.news.add.title}"/>
                 <span th:if="${#fields.hasErrors('title')}"

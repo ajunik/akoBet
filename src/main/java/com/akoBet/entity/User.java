@@ -48,7 +48,6 @@ public class User extends org.springframework.security.core.userdetails.User imp
     private String typesStats;
     private String matchStats;
     private String favoriteClub;
-    private String league;
     private String level;
     private boolean confirmationStatus;
     private String confirmationId;
@@ -57,9 +56,20 @@ public class User extends org.springframework.security.core.userdetails.User imp
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, targetEntity = UserRole.class)
     List<UserRole> UserRole = new ArrayList<UserRole>();
 
+    @OneToOne(targetEntity = League.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "leagueId", nullable = true)
+    League league;
 
     public String getCreatedDate() {
         return createdDate;
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
     }
 
     @Transient
@@ -143,14 +153,6 @@ public class User extends org.springframework.security.core.userdetails.User imp
 
     public void setFavoriteClub(String favoriteClub) {
         this.favoriteClub = favoriteClub;
-    }
-
-    public String getLeague() {
-        return league;
-    }
-
-    public void setLeague(String league) {
-        this.league = league;
     }
 
     public String getLevel() {
