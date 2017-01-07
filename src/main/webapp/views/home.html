@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 >
 <head th:include="commons/imports :: head"/>
-<body>
+<body ng-app="HomeApp" ng-controller="HomeCtrl">
 
 <header th:include="commons/elements :: title-menu"/>
 
@@ -19,7 +19,7 @@
                 <div class="box"><i class="fa fa-info icon"></i>
                     <h3 class="name"><span th:text="#{akobet.home.welcome} + ${name} + '!'"
                                            th:remove="tag">&nbsp;</span></h3>
-                    <p class="description" th:text="#{akobet.menu.profil.description}"></p><a href="/profil"
+                    <p class="description" th:text="#{akobet.menu.profil.description}"></p><a href="/profil/{{user.id}}"
                                                                                               class="learn-more"
                                                                                               th:text="#{akobet.menu.profil.go}"></a>
                 </div>
@@ -130,5 +130,6 @@
 
 <footer th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>
+<script src="/js/home.js"></script>
 </body>
 </html>
