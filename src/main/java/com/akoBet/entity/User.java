@@ -48,11 +48,12 @@ public class User extends org.springframework.security.core.userdetails.User imp
     private String typesStats;
     private String matchStats;
     private String favoriteClub;
-    private String level;
     private boolean confirmationStatus;
     private String confirmationId;
     private String createdDate;
     private String updatedDate;
+    private Integer matches = 0;
+    private Integer points = 0;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER, targetEntity = UserRole.class)
     List<UserRole> UserRole = new ArrayList<UserRole>();
 
@@ -107,6 +108,22 @@ public class User extends org.springframework.security.core.userdetails.User imp
         this.email = email;
     }
 
+    public Integer getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Integer matches) {
+        this.matches = matches;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
+
     public boolean isConfirmationStatus() {
         return confirmationStatus;
     }
@@ -153,14 +170,6 @@ public class User extends org.springframework.security.core.userdetails.User imp
 
     public void setFavoriteClub(String favoriteClub) {
         this.favoriteClub = favoriteClub;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
     }
 
     public String getPasswordEncrypted() {

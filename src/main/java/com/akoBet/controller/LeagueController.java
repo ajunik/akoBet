@@ -71,4 +71,11 @@ public class LeagueController {
             return "message";
         }
     }
+
+    @RequestMapping(value = "/leagues/{id}/show/", method = RequestMethod.GET)
+    public String getLeague(@PathVariable Long id, Model model) {
+        League league = leagueService.findById(id);
+        model.addAttribute("title", league.getName());
+        return "user/leagues/league";
+    }
 }

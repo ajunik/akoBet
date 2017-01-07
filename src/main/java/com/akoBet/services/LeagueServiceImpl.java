@@ -16,6 +16,9 @@ public class LeagueServiceImpl implements LeagueService {
     @Autowired
     LeagueRepository leagueRepository;
 
+    @Autowired
+    UserService userService;
+
     @Override
     public List<League> findAll() {
         return leagueRepository.findAll();
@@ -24,6 +27,12 @@ public class LeagueServiceImpl implements LeagueService {
     @Override
     public League findById(Long id) {
         return leagueRepository.findOne(id);
+    }
+
+
+    @Override
+    public League findByName(String name) {
+        return leagueRepository.findByName(name);
     }
 
     @Override

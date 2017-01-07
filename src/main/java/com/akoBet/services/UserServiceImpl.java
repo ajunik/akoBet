@@ -1,5 +1,6 @@
 package com.akoBet.services;
 
+import com.akoBet.entity.League;
 import com.akoBet.entity.User;
 import com.akoBet.entity.UserRest;
 import com.akoBet.repository.UserRepository;
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    LeagueService leagueService;
+
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
@@ -36,10 +40,35 @@ public class UserServiceImpl implements UserService {
             userRest.setName(user.getUsername());
             userRest.setMail(user.getEmail());
             userRest.setAuth(user.getAuthorities());
+            userRest.setPoints(user.getPoints());
+            userRest.setMatches(user.getMatches());
+            if (user.getLeague() != null) {
+                userRest.setLeague(user.getLeague().getName());
+            }
             userRest.setCreatedDate(user.getCreatedDate());
             restUsers.add(userRest);
         }
         return restUsers;
+    }
+
+    @Override
+    public UserRest getUserApiById(Long id) {
+        User user = userRepository.findOne(id);
+        UserRest userRest = new UserRest();
+        userRest.setId(user.getId());
+        userRest.setName(user.getUsername());
+        userRest.setId(user.getId());
+        userRest.setName(user.getUsername());
+        userRest.setMail(user.getEmail());
+        userRest.setAuth(user.getAuthorities());
+        userRest.setPoints(user.getPoints());
+        userRest.setMatches(user.getMatches());
+        if (user.getLeague() != null) {
+            userRest.setLeague(user.getLeague().getName());
+        }
+        userRest.setCreatedDate(user.getCreatedDate());
+
+        return userRest;
     }
 
 
@@ -61,6 +90,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
+    }
+
+    @Override
+    public List<User> findUsersByLeague(Long leagueId) {
+        League league = leagueService.findById(leagueId);
+        List<User> users = userRepository.findUsersByLeague(league);
+
+        return users;
     }
 
     @Override

@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body ng-app="PlayersApp" ng-controller="PlayersCtrl">
 
+<header id="header" th:include="commons/elements :: title-menu"/>
+
+<div class="container">
+    <div class="intro" style="padding-bottom:20px;">
+        <h2 class="text-center" th:text="${title}"></h2>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead style="background: #1485ee">
+            <tr>
+                <th th:text="#{akobet.league.place}"></th>
+                <th th:text="#{akobet.league.name}"></th>
+                <th th:text="#{akobet.league.matches}"></th>
+                <th th:text="#{akobet.league.points}"></th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="player in players">
+            <tr ng-show="player.league == ${title}">
+                <td>{{$index+1}}</td>
+                <td><a href="/profil/{{player.id}}" style="color:black;">{{player.name}}</a></td>
+                <td>{{player.matches}}</td>
+                <td>{{player.points}}</td>
+            </tr>
+            <tr></tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+<script src="/js/players.js"></script>
 </body>
 </html>

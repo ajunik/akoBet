@@ -11,7 +11,18 @@ public class UserRest {
     private String name;
     private String mail;
     private String createdDate;
+    private Integer matches;
+    private Integer points;
+    private String league;
     Collection auth;
+
+    public String getLeague() {
+        return league;
+    }
+
+    public void setLeague(String league) {
+        this.league = league;
+    }
 
     public String getName() {
         return name;
@@ -47,6 +58,22 @@ public class UserRest {
 
     public String getCreatedDate() {
         return createdDate;
+    }
+
+    public Integer getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Integer matches) {
+        this.matches = matches;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 
     public void setCreatedDate(String createdDate) {

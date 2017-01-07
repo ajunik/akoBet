@@ -11,8 +11,8 @@
         <h2 class="text-center" th:text="#{akobet.menu.admin.competition}"></h2>
     </div>
     <div class="table-responsive">
-        <table class="table">
-            <thead>
+        <table class="table table-striped">
+            <thead style="background: #ccc">
             <tr>
                 <th th:text="#{akobet.admin.addLeague.leagueName}"></th>
                 <th th:text="#{akobet.league.busyPlaces}"></th>
@@ -20,16 +20,25 @@
             </tr>
             </thead>
             <tbody ng-repeat="league in leagues | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
-            <tr ng-show="user.name != 'admin'">
+            <tr>
                 <td>{{league.name}}</td>
                 <td>{{league.busyPlaces}}/{{league.capacity}}</td>
                 <td>
-                    <button class="btn btn-info" style="background-color:#337ab7; border-color:#2e6da4;"><a
+                    <span class="pull-right">
+                    <button ng-disabled="user.league == league.name" class="btn btn-info"
+                            style="background-color:#337ab7; border-color:#2e6da4;">
+                        <span ng-if="user.league == league.name">
+                        <a
+                                href="/leagues/{{league.id}}/join"
+                                style="color:#fff;  pointer-events: none; cursor: default;"
+                                th:text="#{akobet.league.join}"></a></span>
+                    <span ng-if="user.league != league.name"><a
                             href="/leagues/{{league.id}}/join" style="color:#fff;"
-                            th:text="#{akobet.league.join}"></a></button>
+                            th:text="#{akobet.league.join}"></a></span></button>
                     <button class="btn btn-info" style="background-color:#337ab7; border-color:#2e6da4;"><a
                             href="/leagues/{{league.id}}/show/" style="color:#fff;" th:text="#{akobet.league.go}"></a>
                     </button>
+                    </span>
                 </td>
             </tr>
             <tr></tr>

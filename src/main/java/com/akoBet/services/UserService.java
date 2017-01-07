@@ -14,6 +14,8 @@ public interface UserService {
 
     public List<UserRest> getUserApi();
 
+    public UserRest getUserApiById(Long id);
+
     public User findUserByUsername(String username);
 
     public User findUserById(Long id);
@@ -21,6 +23,8 @@ public interface UserService {
     public User findUserByConfirmationId(String confirmationId);
 
     public User findUserByEmail(String email);
+
+    public List<User> findUsersByLeague(Long leagueId);
 
     public User save(User user);
 

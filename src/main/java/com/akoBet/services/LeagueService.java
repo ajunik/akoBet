@@ -13,5 +13,7 @@ public interface LeagueService {
 
     public League findById(Long id);
 
+    public League findByName(String name);
+
     public League save(League league);
 }

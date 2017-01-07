@@ -1,5 +1,6 @@
 package com.akoBet.repository;
 
+import com.akoBet.entity.League;
 import com.akoBet.entity.User;
 import com.akoBet.entity.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,6 +21,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public User findUserByConfirmationId(String confirmationId);
 
     public User findUserByEmail(String email);
+
+    public List<User> findUsersByLeague(League league);
 
     public List<UserRole> findUserRolesById(Long id);
 }

@@ -21,6 +21,13 @@ app.controller('LeaguesCtrl', function ($scope, $http) {
             console.log('error');
         });
 
+    $http.get('/rest/user')
+        .then(function (success) {
+            $scope.user = success.data;
+        }, function (error) {
+            console.log('error');
+        });
+
 });
 
 app.filter('startFrom', function () {
