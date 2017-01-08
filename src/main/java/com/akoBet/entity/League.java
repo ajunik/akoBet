@@ -18,6 +18,7 @@ public class League {
     @SequenceGenerator(name = "league_id", sequenceName = "league_id_seq")
     private Long id;
     @Size(min = 1, max = 30)
+    @Column(unique = true)
     private String name;
 
     @NotNull

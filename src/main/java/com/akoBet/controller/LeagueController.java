@@ -35,7 +35,7 @@ public class LeagueController {
 
     @RequestMapping(value = "/admin/addLeague", method = RequestMethod.POST)
     public String add(@Valid League league, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || !checkUnique(league, bindingResult)) {
             return "admin/game/addLeague";
         } else {
             model.addAttribute("league", league);
@@ -43,6 +43,16 @@ public class LeagueController {
             model.addAttribute("message", "akobet.admin.league.addSuccess");
             return "message";
         }
+    }
+
+    private boolean checkUnique(League league, BindingResult bindingResult) {
+        League leagueByName = leagueService.findByName(league.getName());
+
+        if (leagueByName != null) {
+            bindingResult.rejectValue("name", "akobet.league.nameExists", "League just exists");
+            return false;
+        }
+        return true;
     }
 
     @RequestMapping(value = "/leagues", method = RequestMethod.GET)
