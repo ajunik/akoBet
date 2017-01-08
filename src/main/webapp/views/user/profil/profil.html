@@ -5,15 +5,37 @@
 <body>
 
 <header id="header" th:include="commons/elements :: title-menu"/>
-<div th:include="commons/elements :: security"/>
-<nav id="nav" th:include="commons/elements :: main-menu"/>
 
-
-<section id="main" class="wrapper">
-    <h1>
-        <span th:text="${currentUser.username} + ' Home'" th:remove="tag">&nbsp;</span>
-    </h1>
-</section>
+<div class="intro" style="padding-bottom:20px;">
+    <h2 class="text-center"><span th:text="#{akobet.user.profil}"></span><span th:text="${user.username}"></span></h2>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="media">
+            <div class="media-body">
+                <ul class="list-unstyled fa-ul">
+                    <span class="text-muted"><p><i class="fa fa-user fa-fw"></i> <span
+                            th:text="${user.username}"></span></p></span>
+                    <span class="text-muted"><p><i class="fa fa-envelope fa-fw"></i> <span
+                            th:text="${user.email}"></span> </p></span>
+                    <span class="text-muted"><p><i class="fa fa-table fa-fw"></i> <span th:text="${league}"></span></p></span>
+                    <span class="text-muted"><p><i class="fa fa-star fa-fw"></i> <span
+                            th:text="${user.favoriteClub}"></span></p></span>
+                    <span class="text-muted"><p><i class="fa fa-calendar fa-fw"></i> <span
+                            th:text="${user.createdDate}"></span></p></span>
+                </ul>
+            </div>
+        </div>
+        <div style="padding-top:15px; margin-left:20px;">
+            <small><span th:text="#{akobet.user.profil.stats}"></span><span th:text="${user.typesCorrect}"></span>/<span
+                    th:text="${user.typesFull}"></span></small>
+            <div class="progress progress-high" style="width:300px;">
+                <div class="progress-bar progress-bar-primary" style="width: 90%; font-size:9px; font-weight:600;"
+                     th:text="${stats}"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <footer id="footer" th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>

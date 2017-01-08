@@ -44,9 +44,9 @@ public class User extends org.springframework.security.core.userdetails.User imp
     @Size(min = 5)
     @Column(unique = true)
     private String email;
-    private Date registrationDate;
-    private String typesStats;
-    private String matchStats;
+    private Integer typesFull = 0;
+    private Integer typesCorrect = 0;
+    private Double stats = 0.0;
     private String favoriteClub;
     private boolean confirmationStatus;
     private String confirmationId;
@@ -67,6 +67,14 @@ public class User extends org.springframework.security.core.userdetails.User imp
 
     public League getLeague() {
         return league;
+    }
+
+    public String getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public void setLeague(League league) {
@@ -102,6 +110,10 @@ public class User extends org.springframework.security.core.userdetails.User imp
 
     public String getEmail() {
         return email;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 
     public void setEmail(String email) {
@@ -140,28 +152,28 @@ public class User extends org.springframework.security.core.userdetails.User imp
         this.confirmationId = confirmationId;
     }
 
-    public Date getRegistrationDate() {
-        return registrationDate;
+    public Double getStats() {
+        return stats;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setStats(Double stats) {
+        this.stats = stats;
     }
 
-    public String getTypesStats() {
-        return typesStats;
+    public Integer getTypesFull() {
+        return typesFull;
     }
 
-    public void setTypesStats(String typeStats) {
-        this.typesStats = typeStats;
+    public void setTypesFull(Integer typesFull) {
+        this.typesFull = typesFull;
     }
 
-    public String getMatchStats() {
-        return matchStats;
+    public Integer getTypesCorrect() {
+        return typesCorrect;
     }
 
-    public void setMatchStats(String matchStats) {
-        this.matchStats = matchStats;
+    public void setTypesCorrect(Integer typesCorrect) {
+        this.typesCorrect = typesCorrect;
     }
 
     public String getFavoriteClub() {

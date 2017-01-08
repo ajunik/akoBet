@@ -9,9 +9,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import javax.validation.Valid;
@@ -35,6 +37,28 @@ public class UserController extends WebMvcConfigurerAdapter {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+
+    @RequestMapping(value = "/profil/{id}", method = RequestMethod.GET)
+    public ModelAndView showProfil(@PathVariable Long id, Model model) {
+        User user = userService.findUserById(id);
+        ModelAndView mav = new ModelAndView("user/profil/profil");
+        mav.addObject("user", user);
+        if (user.getLeague() != null) {
+            mav.addObject("league", user.getLeague().getName());
+        } else {
+            mav.addObject("league", "-");
+        }
+        String stats = user.getStats() + "%";
+        mav.addObject("stats", stats);
+//        if(user.getTypesFull() != 0) {
+//            double percentStats = (user.getTypesCorrect() / user.getTypesFull()) * 100.0;
+//            mav.addObject("stats", percentStats);
+//        } else {
+//            mav.addObject("stats", 0.0);
+//        }
+
+        return mav;
+    }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String showForm(User register) {
