@@ -1,6 +1,7 @@
 package com.akoBet.services;
 
 import com.akoBet.entity.League;
+import com.akoBet.entity.UserRest;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ public interface LeagueService {
     public League findById(Long id);
 
     public League findByName(String name);
+
+    public List<UserRest> getPlayersApi(Long leagueId);
 
     public League save(League league);
 }

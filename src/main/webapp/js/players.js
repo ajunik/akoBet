@@ -6,18 +6,12 @@ var app = angular.module('PlayersApp', []);
 
 app.controller('PlayersCtrl', function ($scope, $http) {
 
-
-    $http.get('/rest/users')
+    $http.get('/rest/players/' + id)
         .then(function (success) {
             $scope.players = success.data;
         }, function (error) {
             console.log('error');
         });
 
-    $http.get('/rest/user')
-        .then(function (success) {
-            $scope.user = success.data;
-        }, function (error) {
-            console.log('error');
-        });
+
 });

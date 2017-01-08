@@ -86,6 +86,7 @@ public class LeagueController {
     public String getLeague(@PathVariable Long id, Model model) {
         League league = leagueService.findById(id);
         model.addAttribute("title", league.getName());
+        model.addAttribute("id", league.getId());
         return "user/leagues/league";
     }
 }

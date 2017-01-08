@@ -2,8 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
 >
 <head th:include="commons/imports :: head"/>
-<body ng-app="PlayersApp" ng-controller="PlayersCtrl">
 
+<body ng-app="PlayersApp" ng-controller="PlayersCtrl">
+<script th:inline="javascript">
+    var id = [[${id}]];
+</script>
 <header id="header" th:include="commons/elements :: title-menu"/>
 
 <div class="container">
@@ -21,7 +24,7 @@
             </tr>
             </thead>
             <tbody ng-repeat="player in players">
-            <tr ng-show="player.league == ${title}">
+            <tr>
                 <td>{{$index+1}}</td>
                 <td><a href="/profil/{{player.id}}" style="color:black;">{{player.name}}</a></td>
                 <td>{{player.matches}}</td>
