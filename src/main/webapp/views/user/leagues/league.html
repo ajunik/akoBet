@@ -13,7 +13,7 @@
     <div class="intro" style="padding-bottom:20px;">
         <h2 class="text-center" th:text="${title}"></h2>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" ng-show="players.length > 0">
         <table class="table table-striped">
             <thead style="background: #1485ee">
             <tr>
@@ -34,6 +34,8 @@
             </tbody>
         </table>
     </div>
+    <div ng-show="players.length == 0" style="text-align:center; padding:30px;"
+         th:text="#{akobet.league.noPlayers}"></div>
 
 </div>
 

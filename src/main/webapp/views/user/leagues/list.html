@@ -10,7 +10,7 @@
     <div class="intro" style="padding-bottom:20px;">
         <h2 class="text-center" th:text="#{akobet.menu.admin.competition}"></h2>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" ng-show="leagues.length > 0">
         <table class="table table-striped">
             <thead style="background: #ccc">
             <tr>
@@ -45,6 +45,8 @@
             </tbody>
         </table>
     </div>
+    <div ng-show="leagues.length == 0" style="text-align:center; padding:30px;"
+         th:text="#{akobet.league.noLeagues}"></div>
     <div class="row" style="text-align:center; padding:20px;">
         <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"><i
                 class="fa fa-angle-left icon"></i></button>
