@@ -1,6 +1,5 @@
 package com.akoBet.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -86,17 +85,6 @@ public class User extends org.springframework.security.core.userdetails.User imp
     String pattern = "dd/MM/yyyy";
     @Transient
     SimpleDateFormat format = new SimpleDateFormat(pattern);
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    Date lastLogin;
-
-    public Date getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(Date lastLogin) {
-        this.lastLogin = lastLogin;
-    }
 
     @PrePersist
     protected void onCreate() {
