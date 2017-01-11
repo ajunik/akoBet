@@ -40,16 +40,23 @@ public class UserController extends WebMvcConfigurerAdapter {
 
     @RequestMapping(value = "/profil/{id}", method = RequestMethod.GET)
     public ModelAndView showProfil(@PathVariable Long id, Model model) {
+        ModelAndView mav;
         User user = userService.findUserById(id);
-        ModelAndView mav = new ModelAndView("user/profil/profil");
-        mav.addObject("user", user);
-        if (user.getLeague() != null) {
-            mav.addObject("league", user.getLeague().getName());
+        if (user == null) {
+            mav = new ModelAndView("message");
+            mav.addObject("message", "akobet.user.notExists");
+            return mav;
         } else {
-            mav.addObject("league", "-");
+            mav = new ModelAndView("user/profil/profil");
+            mav.addObject("user", user);
+            if (user.getLeague() != null) {
+                mav.addObject("league", user.getLeague().getName());
+            } else {
+                mav.addObject("league", "-");
+            }
+            String stats = user.getStats() + "%";
+            mav.addObject("stats", stats);
         }
-        String stats = user.getStats() + "%";
-        mav.addObject("stats", stats);
 //        if(user.getTypesFull() != 0) {
 //            double percentStats = (user.getTypesCorrect() / user.getTypesFull()) * 100.0;
 //            mav.addObject("stats", percentStats);
