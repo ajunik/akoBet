@@ -1,5 +1,6 @@
 package com.akoBet.services;
 
+import com.akoBet.entity.Duel;
 import com.akoBet.entity.League;
 import com.akoBet.entity.User;
 import com.akoBet.entity.UserRest;
@@ -21,6 +22,9 @@ public class LeagueServiceImpl implements LeagueService {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    DuelService duelService;
 
     @Override
     public List<League> findAll() {
@@ -55,5 +59,26 @@ public class LeagueServiceImpl implements LeagueService {
     @Override
     public League save(League league) {
         return leagueRepository.saveAndFlush(league);
+    }
+
+    @Override
+    public void generateScheduler(Long leagueId) {
+        List<User> players = userService.findUsersByLeague(leagueId);
+        League league = findById(leagueId);
+        int numPlayers = players.size();
+        int numRounds = numPlayers - 1;
+        int halfSize = numPlayers / 2;
+
+
+        for (int round = 0; round < numRounds; round++) {
+            int teamIdx = round % numRounds;
+            duelService.save(new Duel(players.get(teamIdx), players.get(numRounds), round + 1, league));
+
+            for (int idx = 1; idx < halfSize; idx++) {
+                int firstTeam = (round + idx) % numRounds;
+                int secondTeam = (round + numPlayers - idx) % numRounds;
+                duelService.save(new Duel(players.get(firstTeam), players.get(secondTeam), round + 1, league));
+            }
+        }
     }
 }

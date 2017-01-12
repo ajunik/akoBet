@@ -26,6 +26,14 @@ public class Duel {
     @JoinColumn(name = "leagueId", nullable = true)
     private League league;
 
+
+    public Duel(User player1, User player2, Integer round, League league) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.round = round;
+        this.league = league;
+    }
+
     public Long getId() {
         return id;
     }

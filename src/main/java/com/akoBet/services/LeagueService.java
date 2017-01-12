@@ -19,4 +19,6 @@ public interface LeagueService {
     public List<UserRest> getPlayersApi(Long leagueId);
 
     public League save(League league);
+
+    public void generateScheduler(Long leagueId);
 }

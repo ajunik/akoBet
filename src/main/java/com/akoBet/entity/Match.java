@@ -15,6 +15,7 @@ public class Match {
     private Long id;
     private String team1;
     private String team2;
+    private Integer round;
     private char result;
 
 
@@ -24,6 +25,14 @@ public class Match {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getRound() {
+        return round;
+    }
+
+    public void setRound(Integer round) {
+        this.round = round;
     }
 
     public String getTeam1() {

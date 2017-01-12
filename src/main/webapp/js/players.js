@@ -6,6 +6,9 @@ var app = angular.module('PlayersApp', []);
 
 app.controller('PlayersCtrl', function ($scope, $http) {
 
+    $scope.busyPlaces = busy;
+    $scope.fullPlaces = cap;
+
     $http.get('/rest/players/' + id)
         .then(function (success) {
             $scope.players = success.data;
@@ -13,5 +16,8 @@ app.controller('PlayersCtrl', function ($scope, $http) {
             console.log('error');
         });
 
+    $scope.generateTimetable = function () {
+
+    };
 
 });
