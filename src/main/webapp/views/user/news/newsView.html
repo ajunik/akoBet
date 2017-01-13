@@ -14,7 +14,8 @@
                     <h1 class="text-center" th:text="*{title}"></h1>
                     <p class="text-center"><span class="by" th:text="#{akobet.news.add.by}"></span><span
                             th:text="*{author}"></span>, <span class="date"
-                                                               th:text="*{createdDate}"></span></p><img
+                                                               th:text="*{createdDate}? *{createdDate} : *{updatedDate}"></span>
+                    </p><img
                         class="img-responsive" th:src="*{photo}" style="width:750px;"/></div>
                 <div class="text">
                     <p th:text="*{introduce}" style="font-weight:bold;"></p>

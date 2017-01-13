@@ -34,9 +34,7 @@ public class NewsController {
             return "admin/news/addNews";
         } else {
             User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            if (news.getId() == null) {
-                news.setAuthor(user.getUsername());
-            }
+            news.setAuthor(user.getUsername());
             model.addAttribute("news", news);
             newsService.create(news);
             model.addAttribute("message", "akobet.news.addSuccess");
