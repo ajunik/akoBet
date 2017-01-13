@@ -11,7 +11,8 @@
     <div class="container-fluid">
         <div class="intro">
             <h2 class="text-center" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{akobet.menu.admin}"/>
-            <h2 class="text-center" sec:authorize="!hasRole('ROLE_ADMIN')" th:text="#{akobet.title}"/>
+            <h2 class="text-center" sec:authorize="hasRole('ROLE_USER')" th:text="#{akobet.title}"/>
+            <h2 class="text-center" sec:authorize="!isAuthenticated()" th:text="#{akobet.title.guest}"/>
             <p class="text-center" sec:authorize="!hasRole('ROLE_ADMIN')" th:text="#{akobet.home.description}"/>
         </div>
         <div class="row features">
