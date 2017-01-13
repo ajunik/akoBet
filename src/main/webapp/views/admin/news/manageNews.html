@@ -7,7 +7,7 @@
 <header id="header" th:include="commons/elements :: title-menu"/>
 
 <div class="container">
-    <div class="intro" style="padding-bottom:20px;">
+    <div class="intro" style="padding:40px;">
         <h2 class="text-center" th:text="#{akobet.news.manage}"></h2>
     </div>
     <div class="list-group" ng-repeat="news in news | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
