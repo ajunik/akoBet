@@ -1,9 +1,12 @@
 package com.akoBet.controller;
 
 import com.akoBet.entity.Administrator;
+import com.akoBet.entity.League;
 import com.akoBet.entity.User;
 import com.akoBet.entity.UserRole;
 import com.akoBet.services.EmailService;
+import com.akoBet.services.LeagueService;
+import com.akoBet.services.UserRoleService;
 import com.akoBet.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,6 +37,11 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    UserRoleService userRoleService;
+
+    @Autowired
+    LeagueService leagueService;
 
     @RequestMapping(value = "/admin/add", method = RequestMethod.GET)
     public String add(Administrator admin) {
@@ -57,18 +65,43 @@ public class AdministratorController extends WebMvcConfigurerAdapter {
                 "http://localhost:8080/confirm?id=" + admin.getConfirmationId());
         userService.save(admin);
         model.addAttribute("message", "akobet.register.checkEmail");
+        model.addAttribute("link", "/");
+        model.addAttribute("linkMessage", "akobet.home.go");
         return "message";
     }
 
     @RequestMapping(value = "/admin/user/delete/{id}")
-    public String deleteNews(@PathVariable Long id, Model model) {
+    public String deleteUsers(@PathVariable Long id, Model model) {
 
-        if (userService.findUserById(id) == null) {
+        User user = userService.findUserById(id);
+        if (user == null) {
             model.addAttribute("message", "akobet.user.notExists");
         } else {
-            userService.deleteById(id);
-            model.addAttribute("message", "akobet.user.deleteSuccess");
+            League league = user.getLeague();
+            if (league != null) {
+                if (league.getBusyPlaces() == league.getCapacity()) {
+                    model.addAttribute("message", "akobet.user.notDelete");
+                } else {
+                    Integer busyPlaces = league.getBusyPlaces();
+                    league.setBusyPlaces(busyPlaces - 1);
+                    leagueService.save(league);
+                    user.setLeague(null);
+                    UserRole userRole = userRoleService.findByUser(user);
+                    userRole.setUser(null);
+                    userRoleService.delete(userRole);
+                    userService.deleteById(id);
+                    model.addAttribute("message", "akobet.user.deleteSuccess");
+                }
+            } else {
+                UserRole userRole = userRoleService.findByUser(user);
+                userRole.setUser(null);
+                userRoleService.delete(userRole);
+                userService.deleteById(id);
+                model.addAttribute("message", "akobet.user.deleteSuccess");
+            }
         }
+        model.addAttribute("link", "../../usersList");
+        model.addAttribute("linkMessage", "akobet.admin.userList.redirect");
         return "message";
 
     }
