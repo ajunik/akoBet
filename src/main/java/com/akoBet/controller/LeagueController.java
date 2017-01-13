@@ -40,12 +40,14 @@ public class LeagueController {
 
     @RequestMapping(value = "/admin/addLeague", method = RequestMethod.POST)
     public String add(@Valid League league, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors() || !checkUnique(league, bindingResult) || checkParity(league, bindingResult)) {
+        if (bindingResult.hasErrors() || !checkUnique(league, bindingResult) || !checkParity(league, bindingResult)) {
             return "admin/game/addLeague";
         } else {
             model.addAttribute("league", league);
             leagueService.save(league);
             model.addAttribute("message", "akobet.admin.league.addSuccess");
+            model.addAttribute("link", "addLeague");
+            model.addAttribute("linkMessage", "akobet.league.add.redirect");
             return "message";
         }
     }
@@ -64,6 +66,7 @@ public class LeagueController {
 
         if (league.getCapacity() % 2 != 0) {
             bindingResult.rejectValue("capacity", "akobet.league.parity");
+            return false;
         }
         return true;
     }
@@ -79,6 +82,8 @@ public class LeagueController {
 
         if (league == null) {
             model.addAttribute("message", "akobet.league.notExists");
+            model.addAttribute("link", "../");
+            model.addAttribute("linkMessage", "akobet.league.list.redirect");
             return "message";
         } else if (user.getLeague() == null) {
             user.setLeague(league);
@@ -90,15 +95,19 @@ public class LeagueController {
                 leagueService.generateScheduler(league.getId());
             }
             model.addAttribute("message", "akobet.league.userJoined");
+            model.addAttribute("link", "show");
+            model.addAttribute("linkMessage", "akobet.league.redirect");
             return "message";
         } else {
+            model.addAttribute("link", "../");
+            model.addAttribute("linkMessage", "akobet.league.list.redirect");
             model.addAttribute("message", "akobet.league.userAlreadyHasLeague");
             return "message";
         }
     }
 
 
-    @RequestMapping(value = "/leagues/{id}/show/", method = RequestMethod.GET)
+    @RequestMapping(value = "/leagues/{id}/show", method = RequestMethod.GET)
     public ModelAndView getLeague(@PathVariable Long id, Model model) {
         ModelAndView mav = new ModelAndView("user/leagues/league");
         League league = leagueService.findById(id);

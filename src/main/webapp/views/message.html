@@ -6,11 +6,11 @@
 
 <header id="header" th:include="commons/elements :: title-menu"/>
 
-<div class="jumbotron" style="text-align:center">
-    <h3>
+<div class="jumbotron" style="text-align:center; padding:100px;">
+    <h3 style="padding-top:20px; padding-bottom:50px;">
             <span th:text="#{${message}}" th:remove="tag">&nbsp;</span>
     </h3>
-    <a href="/" class="button small special" th:text="#{akobet.home.go}"></a>
+    <a th:href="${link}" class="button small special" th:text="#{${linkMessage}}"></a>
     </div>
 
 <footer id="footer" th:include="commons/imports :: footer"/>

@@ -45,6 +45,8 @@ public class UserController extends WebMvcConfigurerAdapter {
         if (user == null) {
             mav = new ModelAndView("message");
             mav.addObject("message", "akobet.user.notExists");
+            mav.addObject("link", "/");
+            mav.addObject("linkMessage", "akobet.home.go");
             return mav;
         } else {
             mav = new ModelAndView("user/profil/profil");
@@ -81,6 +83,8 @@ public class UserController extends WebMvcConfigurerAdapter {
         }
 
         model.addAttribute("message", message);
+        model.addAttribute("link", "/");
+        model.addAttribute("linkMessage", "akobet.home.go");
         return "message";
     }
 
@@ -102,6 +106,8 @@ public class UserController extends WebMvcConfigurerAdapter {
                 "http://localhost:8080/confirm?id=" + user.getConfirmationId());
         userService.save(user);
         model.addAttribute("message", "akobet.register.checkEmail");
+        model.addAttribute("link", "/");
+        model.addAttribute("linkMessage", "akobet.home.go");
         return "message";
     }
 

@@ -33,6 +33,8 @@ public class MapController {
         } else {
             bookmakerService.save(bookmaker);
             model.addAttribute("message", "akobet.map.addSuccess");
+            model.addAttribute("link", "add");
+            model.addAttribute("linkMessage", "akobet.map.add.redirect");
             return "message";
         }
     }
@@ -44,7 +46,7 @@ public class MapController {
 
 
     @RequestMapping(value = "/admin/map/delete/{id}")
-    public String deleteNews(@PathVariable Long id, Model model) {
+    public String deleteBook(@PathVariable Long id, Model model) {
 
         if (bookmakerService.findById(id) == null) {
             model.addAttribute("message", "akobet.map.notExists");
@@ -52,6 +54,8 @@ public class MapController {
             bookmakerService.deleteById(id);
             model.addAttribute("message", "akobet.map.deleteSuccess");
         }
+        model.addAttribute("link", "../manage");
+        model.addAttribute("linkMessage", "akobet.map.list.redirect");
         return "message";
 
     }

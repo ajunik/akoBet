@@ -40,6 +40,8 @@ public class NewsController {
             model.addAttribute("news", news);
             newsService.create(news);
             model.addAttribute("message", "akobet.news.addSuccess");
+            model.addAttribute("link", "add");
+            model.addAttribute("linkMessage", "akobet.news.add.redirect");
             return "message";
         }
     }
@@ -55,6 +57,8 @@ public class NewsController {
         News news = newsService.findById(id);
         if (news == null) {
             model.addAttribute("message", "akobet.news.notExists");
+            model.addAttribute("link", "../manage");
+            model.addAttribute("linkMessage", "akobet.news.list.redirect");
             return "message";
         } else {
             model.addAttribute("news", news);
@@ -71,6 +75,8 @@ public class NewsController {
             newsService.deleteById(id);
             model.addAttribute("message", "akobet.news.deleteSuccess");
         }
+        model.addAttribute("linkMessage", "akobet.news.list.redirect");
+        model.addAttribute("link", "../manage");
         return "message";
 
     }
@@ -84,8 +90,14 @@ public class NewsController {
     public String showArticle(@PathVariable Long id, Model model) {
 
         News article = newsService.findById(id);
-        model.addAttribute("article", article);
-
+        if (article == null) {
+            model.addAttribute("message", "akobet.news.notExists");
+            model.addAttribute("link", "../news");
+            model.addAttribute("linkMessage", "akobet.news.list.go");
+            return "message";
+        } else {
+            model.addAttribute("article", article);
+        }
         return "user/news/newsView";
     }
 }
