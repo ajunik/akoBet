@@ -36,11 +36,11 @@
             </tbody>
         </table>
     </div>
-    <div ng-show="players.length == 0" style="text-align:center; padding:30px;"
+    <div ng-show="players.length == 0" style="text-align:center; padding-top:30px; padding-bottom:150px;"
          th:text="#{akobet.league.noPlayers}"></div>
 </div>
 
-<div class="container" style="padding:20px;">
+<div class="container" ng-show="busyPlaces==fullPlaces" style="padding:20px;">
     <select class="input-lg" ng-model="selectedRound">
         <option value="" style="display:none">Wybierz rundę</option>
         <option ng-repeat="round in rounds" value="{{round}}">Runda {{round}}</option>
