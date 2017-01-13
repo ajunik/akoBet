@@ -46,11 +46,10 @@
         <option ng-repeat="round in rounds" value="{{round}}">Runda {{round}}</option>
     </select>
     <div style="padding:20px;">
-        <div class="list-unstyled fa-ul" ng-repeat="duel in allDuels" ng-if="duel.round == selectedRound"
-             style="font-size:15px;">
-            <li>{{duel.player1}}&nbsp;-&nbsp;{{duel.player2}}&nbsp;<span ng-if="duel.score1">{{duel.score1}}:{{duel.score2}}</span>
+        <ul class="list-group" ng-repeat="duel in allDuels" ng-if="duel.round == selectedRound">
+            <li class="list-group-item">{{duel.player1}}&nbsp;-&nbsp;{{duel.player2}}&nbsp;<span ng-if="duel.score1">{{duel.score1}}:{{duel.score2}}</span>
             </li>
-        </div>
+        </ul>
     </div>
 </div>
 
@@ -64,5 +63,6 @@
 <footer id="footer" th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>
 <script src="/js/players.js"></script>
+<link rel="stylesheet" href="/css/style.css"/>
 </body>
 </html>
