@@ -34,6 +34,9 @@ public class Duel {
         this.league = league;
     }
 
+    public Duel() {
+    }
+
     public Long getId() {
         return id;
     }

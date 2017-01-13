@@ -51,6 +51,7 @@ public class LeagueServiceImpl implements LeagueService {
         return restUsers;
     }
 
+
     @Override
     public League findByName(String name) {
         return leagueRepository.findByName(name);

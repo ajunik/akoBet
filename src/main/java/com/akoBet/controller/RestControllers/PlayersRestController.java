@@ -1,6 +1,8 @@
 package com.akoBet.controller.RestControllers;
 
+import com.akoBet.entity.DuelRest;
 import com.akoBet.entity.UserRest;
+import com.akoBet.services.DuelService;
 import com.akoBet.services.LeagueService;
 import com.akoBet.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,22 @@ public class PlayersRestController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private DuelService duelService;
+
     @RequestMapping(value = "rest/players/{id}", method = RequestMethod.GET)
     public
     @ResponseBody
     List<UserRest> read(@PathVariable Long id) {
         List<UserRest> players = leagueService.getPlayersApi(id);
         return players;
+    }
+
+    @RequestMapping(value = "rest/scheduler/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<DuelRest> readScheduler(@PathVariable Long id) {
+        List<DuelRest> duels = duelService.getDuelsApi(id);
+        return duels;
     }
 }
