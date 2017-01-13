@@ -10,4 +10,10 @@ import java.util.List;
 public interface BookmakerService {
 
     List<Bookmaker> findAll();
+
+    Bookmaker save(Bookmaker bookmaker);
+
+    Bookmaker findById(Long id);
+
+    void deleteById(Long id);
 }

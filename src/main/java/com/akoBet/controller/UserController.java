@@ -57,12 +57,6 @@ public class UserController extends WebMvcConfigurerAdapter {
             String stats = user.getStats() + "%";
             mav.addObject("stats", stats);
         }
-//        if(user.getTypesFull() != 0) {
-//            double percentStats = (user.getTypesCorrect() / user.getTypesFull()) * 100.0;
-//            mav.addObject("stats", percentStats);
-//        } else {
-//            mav.addObject("stats", 0.0);
-//        }
 
         return mav;
     }

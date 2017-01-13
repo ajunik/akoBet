@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body>
+
+<header id="header" th:include="commons/elements :: title-menu"/>
+<th:block th:include="commons/elements :: navigate"/>
+
+
+<div class="register">
+    <div class="form-container">
+        <form action="#" th:action="@{/admin/map/add}" th:object="${bookmaker}" method="post">
+            <h2 class="text-center" th:text="#{akobet.admin.map.add}"></h2>
+            <div class="form-group">
+                <input class="form-control" type="text" th:field="*{name}"
+                       th:placeholder="#{akobet.admin.map.name}"/>
+                <span th:if="${#fields.hasErrors('name')}"
+                      th:errors="*{name}" style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" th:field="*{address}"
+                       th:placeholder="#{akobet.admin.map.address}"/>
+                <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+                      style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" step="any" th:field="*{latitude}"
+                       th:placeholder="#{akobet.admin.map.latitude}"/>
+                <span th:if="${#fields.hasErrors('latitude')}" th:errors="*{latitude}"
+                      style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="number" step="any" th:field="*{longitude}"
+                       th:placeholder="#{akobet.admin.map.longitude}"/>
+                <span th:if="${#fields.hasErrors('longitude')}" th:errors="*{longitude}"
+                      style="color:red; font-size:11px;"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit" th:text="#{akobet.menu.admin.add}"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+</body>
+</html>

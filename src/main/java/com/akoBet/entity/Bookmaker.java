@@ -1,6 +1,9 @@
 package com.akoBet.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Arek on 20.12.2016.
@@ -14,12 +17,18 @@ public class Bookmaker {
     @SequenceGenerator(name = "books_id", sequenceName = "books_id_seq")
     private Long id;
 
+    @Size(min = 1, max = 15)
     private String name;
 
+    @Size(min = 1, max = 50)
     private String address;
 
+    @Min(-90)
+    @Max(90)
     private double latitude;
 
+    @Min(-180)
+    @Max(180)
     private double longitude;
 
     public Long getId() {

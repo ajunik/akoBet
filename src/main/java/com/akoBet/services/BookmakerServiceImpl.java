@@ -20,4 +20,19 @@ public class BookmakerServiceImpl implements BookmakerService {
     public List<Bookmaker> findAll() {
         return bookmakerRepository.findAll();
     }
+
+    @Override
+    public Bookmaker save(Bookmaker bookmaker) {
+        return bookmakerRepository.saveAndFlush(bookmaker);
+    }
+
+    @Override
+    public Bookmaker findById(Long id) {
+        return bookmakerRepository.findOne(id);
+    }
+
+    @Override
+    public void deleteById(Long id) throws RuntimeException {
+        bookmakerRepository.delete(id);
+    }
 }

@@ -2,32 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org"
 >
 <head th:include="commons/imports :: head"/>
-<body ng-app="UsersApp" ng-controller="UsersCtrl">
+<body ng-app="BooksApp" ng-controller="BooksCtrl">
 
 <header id="header" th:include="commons/elements :: title-menu"/>
 
 <div class="container">
     <div class="intro" style="padding-bottom:20px;">
-        <h2 class="text-center" th:text="#{akobet.menu.admin.users}"></h2>
+        <h2 class="text-center" th:text="#{akobet.admin.map.title}"></h2>
     </div>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead style="background: #ccc">
             <tr>
-                <th th:text="#{akobet.login.username}"></th>
-                <th th:text="#{akobet.login.email}"></th>
-                <th th:text="#{akobet.admin.users.date}"></th>
+                <th th:text="#{akobet.admin.map.name}"></th>
+                <th th:text="#{akobet.admin.map.address}"></th>
+                <th th:text="#{akobet.admin.map.latitude}"></th>
+                <th th:text="#{akobet.admin.map.longitude}"></th>
                 <th></th>
             </tr>
             </thead>
-            <tbody ng-repeat="user in users | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
-            <tr ng-show="user.name != 'admin'">
-                <td>{{user.name}}</td>
-                <td>{{user.mail}}</td>
-                <td>{{user.createdDate}}</td>
+            <tbody ng-repeat="book in books | filter:q | startFrom:currentPage*pageSize | limitTo:pageSize">
+            <tr>
+                <td>{{book.name}}</td>
+                <td>{{book.address}}</td>
+                <td>{{book.latitude}}</td>
+                <td>{{book.longitude}}</td>
                 <td>
                     <button class="btn btn-info" style="background-color:#337ab7; border-color:#2e6da4;"><a
-                            href="/admin/user/delete/{{user.id}}" style="color:#fff;"
+                            href="/admin/map/delete/{{book.id}}" style="color:#fff;"
                             th:text="#{akobet.admin.delete}"></a></button>
                 </td>
             </tr>
@@ -38,7 +40,7 @@
     <div class="row" style="text-align:center; padding:20px;">
         <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"><i
                 class="fa fa-angle-left icon"></i></button>
-        <button class="btn btn-primary" ng-disabled="currentPage >= users.length/pageSize - 1"
+        <button class="btn btn-primary" ng-disabled="currentPage >= books.length/pageSize - 1"
                 ng-click="currentPage=currentPage+1"><i class="fa fa-angle-right icon"></i></button>
     </div>
 
@@ -47,6 +49,6 @@
 
 <footer id="footer" th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>
-<script src="/js/users.js"></script>
+<script src="/js/books.js"></script>
 </body>
 </html>
