@@ -77,7 +77,7 @@ public class LeagueServiceImpl implements LeagueService {
 
             for (int idx = 1; idx < halfSize; idx++) {
                 int firstTeam = (round + idx) % numRounds;
-                int secondTeam = (round + numPlayers - idx) % numRounds;
+                int secondTeam = (round + numRounds - idx) % numRounds;
                 duelService.save(new Duel(players.get(firstTeam), players.get(secondTeam), round + 1, league));
             }
         }
