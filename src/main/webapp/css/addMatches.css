@@ -1,0 +1,27 @@
+.input-lg {
+    background: #f7f9fc;
+    border-color: #f7f9fc;
+    width: 150px;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 0px;
+}
+
+select.input-lg {
+    height: 40px;
+    line-height: 40px;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.register .form-container {
+    max-width: 640px;
+}
+
+.register form {
+    width: 640px;
+}

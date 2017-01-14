@@ -1,6 +1,10 @@
 package com.akoBet.entity;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Arek on 09.01.2017.
@@ -8,6 +12,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "MATCHES")
 public class Match {
+
+    @Transient
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+
+
+    public Match(String team1, String team2, League league, Integer round, String date) throws ParseException {
+        this.team1 = team1;
+        this.team2 = team2;
+        this.league = league;
+        this.round = round;
+        this.date = df.parse(date);
+        this.result = '-';
+    }
+
 
     @Id
     @GeneratedValue(generator = "match_id", strategy = GenerationType.SEQUENCE)
@@ -17,6 +35,10 @@ public class Match {
     private String team2;
     private Integer round;
     private char result;
+    private Date date;
+    @OneToOne(targetEntity = League.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "leagueId", nullable = true)
+    private League league;
 
 
     public Long getId() {

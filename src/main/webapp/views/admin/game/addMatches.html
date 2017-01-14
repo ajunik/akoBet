@@ -1,10 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body ng-app="MatchApp" ng-controller="MatchCtrl">
 
+<header id="header" th:include="commons/elements :: title-menu"/>
+
+
+<div class="register">
+    <div class="form-container">
+        <form action="#" th:action="@{/admin/addMatches}" th:object="${set}" method="post">
+            <h2 class="text-center" th:text="#{akobet.addMatches.title}"></h2>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m1t1}"
+                               th:placeholder="#{akobet.addMatches.team1}"/>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m1t2}"
+                               th:placeholder="#{akobet.addMatches.team2}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m2t1}"
+                               th:placeholder="#{akobet.addMatches.team1}"/>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m2t2}"
+                               th:placeholder="#{akobet.addMatches.team2}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m3t1}"
+                               th:placeholder="#{akobet.addMatches.team1}"/>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m3t2}"
+                               th:placeholder="#{akobet.addMatches.team2}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m4t1}"
+                               th:placeholder="#{akobet.addMatches.team1}"/>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m4t2}"
+                               th:placeholder="#{akobet.addMatches.team2}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m5t1}"
+                               th:placeholder="#{akobet.addMatches.team1}"/>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-6">
+                        <input class="form-control" type="text" th:field="*{m5t2}"
+                               th:placeholder="#{akobet.addMatches.team2}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-4">
+                    <select class="input-lg" ng-model="selectedLeague" th:field="*{leagueId}">
+                        <option value="" style="display:none" th:text="#{akobet.addMatches.league}"></option>
+                        <option ng-repeat="league in leagues" ng-show="league.busyPlaces==league.capacity"
+                                value="{{league.id}}">{{league.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-4">
+                    <input class="form-control" type="number" th:field="*{round}"
+                           th:placeholder="#{akobet.addMatches.round}"/>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-4">
+                    <input class="form-control" type="datetime-local" th:field="*{date}"
+                           th:placeholder="#{akobet.addMatches.date}"/>
+                </div>
+            </div>
+            <div th:text="#{${errorMessage}}" class="error"></div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit" th:text="#{akobet.menu.admin.add}"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+<script src="/js/match.js"></script>
+<link rel="stylesheet" href="/css/addMatches.css"/>
 </body>
 </html>
