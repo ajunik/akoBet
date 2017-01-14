@@ -10,7 +10,8 @@
     <h3 style="padding-top:20px; padding-bottom:50px;">
             <span th:text="#{${message}}" th:remove="tag">&nbsp;</span>
     </h3>
-    <a th:href="${link}" class="button small special" th:text="#{${linkMessage}}"></a>
+    <button type="button" class="btn btn-primary"><a th:href="${link}" class="button small special" style="color:#fff"
+                                                     th:text="#{${linkMessage}}"></a></button>
     </div>
 
 <footer id="footer" th:include="commons/imports :: footer"/>

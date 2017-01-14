@@ -16,121 +16,136 @@
             <p class="text-center" sec:authorize="!hasRole('ROLE_ADMIN')" th:text="#{akobet.home.description}"/>
         </div>
         <div class="row features">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="hasRole('ROLE_USER')">
                 <div class="box"><i class="fa fa-info icon"></i>
                     <h3 class="name"><span th:text="#{akobet.home.welcome} + ${name} + '!'"
                                            th:remove="tag">&nbsp;</span></h3>
-                    <p class="description" th:text="#{akobet.menu.profil.description}"></p><a href="/profil/{{user.id}}"
-                                                                                              class="learn-more"
-                                                                                              th:text="#{akobet.menu.profil.go}"></a>
+                    <p class="description" th:text="#{akobet.menu.profil.description}"></p>
+                    <button type="button" class="btn btn-primary"><a href="/profil/{{user.id}}" class="learn-more"
+                                                                     style="color:#fff"
+                                                                     th:text="#{akobet.menu.profil.go}"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="hasRole('ROLE_USER')">
                 <div class="box"><i class="fa fa-check icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.tips}"></h3>
-                    <p class="description" th:text="#{akobet.menu.tips.description}"></p><a href="/bet"
-                                                                                            class="learn-more"
-                                                                                            th:text="#{akobet.menu.tips.go}"></a>
+                    <p class="description" th:text="#{akobet.menu.tips.description}"></p>
+                    <button type="button" class="btn btn-primary"><a href="/bet"
+                                                                     class="learn-more" style="color:#fff"
+                                                                     th:text="#{akobet.menu.tips.go}"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_USER')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="hasRole('ROLE_USER')">
                 <div class="box"><i class="fa fa-bar-chart icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.stats}"></h3>
-                    <p class="description" th:text="#{akobet.menu.stats.description}"></p><a href="/leagues"
-                                                                                             class="learn-more"
-                                                                                             th:text="#{akobet.menu.stats.go}"></a>
+                    <p class="description" th:text="#{akobet.menu.stats.description}"></p>
+                    <button type="button" class="btn btn-primary"><a href="/leagues"
+                                                                     class="learn-more" style="color:#fff"
+                                                                     th:text="#{akobet.menu.stats.go}"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="!hasRole('ROLE_ADMIN')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="!hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-map-marker icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.map}"></h3>
-                    <p class="description" th:text="#{akobet.menu.map.description}"></p><a href="/map"
-                                                                                           class="learn-more"
-                                                                                           th:text="#{akobet.menu.map.go}"></a>
+                    <p class="description" th:text="#{akobet.menu.map.description}"></p>
+
+                    <button type="button" class="btn btn-primary"><a href="/map" class="learn-more"
+                                                                     th:text="#{akobet.menu.map.go}"
+                                                                     style="color:#fff"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="!hasRole('ROLE_ADMIN')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="!hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-newspaper-o icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.news}"></h3>
-                    <p class="description" th:text="#{akobet.menu.news.description}"></p><a href="/news"
-                                                                                            class="learn-more"
-                                                                                            th:text="#{akobet.menu.news.go}"></a>
+                    <p class="description" th:text="#{akobet.menu.news.description}"></p>
+
+                    <button type="button" class="btn btn-primary"><a href="/news" class="learn-more" style="color:#fff"
+                                                                     th:text="#{akobet.menu.news.go}"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-male icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.admin.users}"></h3>
-                    <p class="description" th:text="#{akobet.menu.admin.users.description}"></p><a href="/admin/add"
-                                                                                                   class="learn-more"
-                                                                                                   th:text="#{akobet.menu.admin.add}"></a>&nbsp;&nbsp;
-                    <a
+                    <p class="description" th:text="#{akobet.menu.admin.users.description}"></p>
+                    <button type="button" class="btn btn-primary"><a href="/admin/add"
+                                                                     class="learn-more" style="color:#fff"
+                                                                     th:text="#{akobet.menu.admin.add}"></a></button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary"><a
                             href="/admin/usersList"
-                            class="learn-more"
-                            th:text="#{akobet.menu.admin.manage}"></a>
+                            class="learn-more" style="color:#fff"
+                            th:text="#{akobet.menu.admin.manage}"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-check icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.tips}"></h3>
                     <p class="description" th:text="#{akobet.menu.admin.tips.description}"></p>
-                    <a
+                    <button type="button" class="btn btn-primary"><a
                             href="/admin/addMatches"
-                            class="learn-more"
-                            th:text="#{akobet.admin.addMatches}"></a>&nbsp;
-                    <a
+                            class="learn-more" style="color:#fff"
+                            th:text="#{akobet.admin.addMatches}"></a></button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary"><a
                             href="/admin/addResults"
-                            class="learn-more"
-                            th:text="#{akobet.admin.addResults}"></a>
+                            class="learn-more" style="color:#fff"
+                            th:text="#{akobet.admin.addResults}"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-plus icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.admin.competition}"></h3>
                     <p class="description" th:text="#{akobet.menu.admin.competition.description}"></p>
-                    <a
+                    <button type="button" class="btn btn-primary"><a
                             href="/admin/addLeague"
-                            class="learn-more"
-                            th:text="#{akobet.admin.addLeague}"></a>
+                            class="learn-more" style="color:#fff"
+                            th:text="#{akobet.admin.addLeague}"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-map-marker icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.map}"></h3>
-                    <p class="description" th:text="#{akobet.menu.admin.map.description}"></p><a href="/admin/map/add"
-                                                                                                 class="learn-more"
-                                                                                                 th:text="#{akobet.menu.admin.add}"></a>&nbsp;&nbsp;
-                    <a
+                    <p class="description" th:text="#{akobet.menu.admin.map.description}"></p>
+                    <button type="button" class="btn btn-primary"><a href="/admin/map/add"
+                                                                     class="learn-more" style="color:#fff"
+                                                                     th:text="#{akobet.menu.admin.add}"></a></button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary"><a
                             href="/admin/map/manage"
-                            class="learn-more"
-                            th:text="#{akobet.menu.admin.manage}"></a>
+                            class="learn-more" style="color:#fff"
+                            th:text="#{akobet.menu.admin.manage}"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="box"><i class="fa fa-newspaper-o icon"></i>
                     <h3 class="name" th:text="#{akobet.menu.news}"></h3>
-                    <p class="description" th:text="#{akobet.menu.admin.news.description}"></p><a href="/admin/news/add"
-                                                                                                  class="learn-more"
-                                                                                                  th:text="#{akobet.menu.admin.add}"></a>&nbsp;&nbsp;
-                    <a
+                    <p class="description" th:text="#{akobet.menu.admin.news.description}"></p>
+                    <button type="button" class="btn btn-primary"><a href="/admin/news/add"
+                                                                     class="learn-more" style="color:#fff"
+                                                                     th:text="#{akobet.menu.admin.add}"></a></button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary"><a
                             href="/admin/news/manage"
-                            class="learn-more"
-                            th:text="#{akobet.menu.admin.manage}"></a>
+                            class="learn-more" style="color:#fff"
+                            th:text="#{akobet.menu.admin.manage}"></a></button>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="!isAuthenticated()">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="!isAuthenticated()">
                 <div class="box"><i class="fa fa-sign-in icon"></i>
                     <h3 class="name" th:text="#{akobet.home.login}"></h3>
-                    <p class="description" th:text="#{akobet.home.login.description}"></p><a href="/login"
-                                                                                             class="learn-more"
-                                                                                             th:text="#{akobet.home.login}"></a>&nbsp;&nbsp;
-                    <a
+                    <p class="description" th:text="#{akobet.home.login.description}"></p>
+                    <button type="button" class="btn btn-primary"><a href="/login"
+                                                                     class="learn-more" style="color:#fff"
+                                                                     th:text="#{akobet.home.login}"></a></button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary"><a
                             href="/signup"
-                            class="learn-more"
-                            th:text="#{akobet.home.register}"></a>
+                            class="learn-more" style="color:#fff"
+                            th:text="#{akobet.home.register}"></a></button>
 
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 item" sec:authorize="isAuthenticated()">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 item" sec:authorize="isAuthenticated()">
                 <div class="box"><i class="fa fa-sign-out icon"></i>
                     <div th:include="commons/elements :: logout"/>
                 </div>

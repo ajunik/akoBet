@@ -9,5 +9,6 @@
 
         <form id="logout" th:action="@{/logout}" method="post">
     </form>
-    <a href="#" onclick="document.getElementById('logout').submit()" th:text="#{akobet.home.logout}"></a>
+    <button type="button" class="btn btn-primary"><a href="#" onclick="document.getElementById('logout').submit()"
+                                                     style="color:#fff" th:text="#{akobet.home.logout}"></a></button>
 </block>
