@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class NewsRestController {
     @ResponseBody
     List<News> read() {
         List<News> news = newsService.findAll();
+        Collections.reverse(news);
         return news;
     }
 }
