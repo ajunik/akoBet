@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,6 +35,8 @@ public class PlayersRestController {
     @ResponseBody
     List<UserRest> read(@PathVariable Long id) {
         List<UserRest> players = leagueService.getPlayersApi(id);
+        players.sort((o1, o2) -> o1.getPoints().compareTo(o2.getPoints()));
+        Collections.reverse(players);
         return players;
     }
 
@@ -44,4 +47,6 @@ public class PlayersRestController {
         List<DuelRest> duels = duelService.getDuelsApi(id);
         return duels;
     }
+
+
 }

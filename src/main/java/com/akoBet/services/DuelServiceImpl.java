@@ -69,7 +69,7 @@ public class DuelServiceImpl implements DuelService {
                 PlayerTypes pt1 = playerTypesService.findByMatchAndUser(match, user1);
                 PlayerTypes pt2 = playerTypesService.findByMatchAndUser(match, user2);
                 char type1 = pt1.getType();
-                char type2 = pt1.getType();
+                char type2 = pt2.getType();
 
                 if (type1 == match.getResult()) {
                     user1Score++;
