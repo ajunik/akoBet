@@ -1,5 +1,6 @@
 package com.akoBet.services;
 
+import com.akoBet.entity.League;
 import com.akoBet.entity.Match;
 import com.akoBet.entity.Set;
 
@@ -14,4 +15,6 @@ public interface MatchService {
     public Match save(Match match);
 
     public List<Match> init(Set set) throws ParseException;
+
+    List<Match> findByLeague(Long leagueId);
 }

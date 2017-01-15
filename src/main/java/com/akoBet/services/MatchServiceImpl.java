@@ -1,5 +1,6 @@
 package com.akoBet.services;
 
+import com.akoBet.entity.League;
 import com.akoBet.entity.Match;
 import com.akoBet.entity.Set;
 import com.akoBet.repository.MatchRepository;
@@ -36,5 +37,11 @@ public class MatchServiceImpl implements MatchService {
         matches.add(new Match(set.getM4t1(), set.getM4t2(), leagueService.findById(set.getLeagueId()), set.getRound(), set.getDate()));
         matches.add(new Match(set.getM5t1(), set.getM5t2(), leagueService.findById(set.getLeagueId()), set.getRound(), set.getDate()));
         return matches;
+    }
+
+    @Override
+    public List<Match> findByLeague(Long leagueId) {
+        League league = leagueService.findById(leagueId);
+        return matchRepository.findByLeague(league);
     }
 }

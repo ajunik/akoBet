@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body ng-app="BetApp" ng-controller="BetCtrl">
+<script th:inline="javascript">
+    var league = [[${league}]];
+    var maxRound = [[${rounds}]];
+</script>
+<header id="header" th:include="commons/elements :: title-menu"/>
 
+
+<div class="register">
+    <div class="form-container">
+        <form action="#" th:action="@{/bet}" method="post">
+            <h2 class="text-center" th:text="#{akobet.bet.title}"></h2>
+            <div  style="padding:20px; text-align:center;">
+            <select class="input-lg" ng-model="selectedRound" id="123" >
+                <option value="" style="display:none" th:text="#{akobet.league.selectRound}"></option>
+                <option ng-repeat="round in rounds" value="{{round}}"><span th:text="#{akobet.league.round}"></span>
+                    {{round}}
+                </option>
+            </select>
+            </div>
+            <div class="list-group" ng-repeat="match in matches" ng-if="match.round == selectedRound">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-xs-2"></div>
+                        <div class="col-lg-7 col-md-7 col-xs-7">
+                    <span>{{match.team1}}&nbsp;-&nbsp;{{match.team2}}&nbsp;&nbsp;</span>
+                    </div>
+                        <div class="col-lg-2 col-md-2 col-xs-2">
+                        <select class="input-xs" ng-model="selectType">
+                        <option value="" style="display:none"></option>
+                        <option ng-repeat="type in types" value="{{type}}">{{type}}
+                        </option>
+                    </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button ng-disabled="!time" class="btn btn-primary btn-block" type="submit" th:text="#{akobet.bet.save}"></button>
+            </div>
+            <div ng-if="selectedRound" style="text-align:center;">
+                <div ng-if="time">
+            <span th:text="#{akobet.bet.timeToEnd}"></span>{{dateString}}
+                </div>
+                <div ng-if="!time">
+                    <span th:text="#{akobet.bet.timeIsEnd}"></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+<script src="/js/bet.js"></script>
+<link rel="stylesheet" href="/css/bet.css"/>
 </body>
 </html>

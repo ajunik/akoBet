@@ -1,0 +1,20 @@
+.input-lg {
+    background: #f9f9f9;
+    width: 150px;
+    padding: 5px;
+    font-size: 16px;
+    height: 34px;
+    text-align: center;
+}
+
+.input-xs {
+    background: #f9f9f9;
+}
+
+.register .form-container {
+    max-width: 600px;
+}
+
+.register form {
+    width: 600px;
+}

@@ -17,6 +17,8 @@ public class Match {
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 
 
+    public Match(){}
+
     public Match(String team1, String team2, League league, Integer round, String date) throws ParseException {
         this.team1 = team1;
         this.team2 = team2;
@@ -40,6 +42,21 @@ public class Match {
     @JoinColumn(name = "leagueId", nullable = true)
     private League league;
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public League getLeague() {
+        return league;
+    }
+
+    public void setLeague(League league) {
+        this.league = league;
+    }
 
     public Long getId() {
         return id;
