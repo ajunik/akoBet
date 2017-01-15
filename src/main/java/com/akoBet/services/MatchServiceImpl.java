@@ -44,4 +44,26 @@ public class MatchServiceImpl implements MatchService {
         League league = leagueService.findById(leagueId);
         return matchRepository.findByLeague(league);
     }
+
+
+    @Override
+    public Integer getActualRound(League league) {
+
+        Integer round = 0;
+        List<Match> matches = matchRepository.findByLeague(league);
+
+
+        for (Match match : matches) {
+            if (match.getRound() > round) {
+                round = match.getRound();
+            }
+        }
+
+        return round;
+    }
+
+    @Override
+    public Match findById(Long id) {
+        return matchRepository.findOne(id);
+    }
 }

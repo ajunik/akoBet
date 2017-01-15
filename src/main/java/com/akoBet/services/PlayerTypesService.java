@@ -1,7 +1,8 @@
 package com.akoBet.services;
 
-import com.akoBet.entity.Match;
-import com.akoBet.entity.User;
+import com.akoBet.entity.*;
+
+import java.util.List;
 
 /**
  * Created by Arek on 09.01.2017.
@@ -9,4 +10,11 @@ import com.akoBet.entity.User;
 public interface PlayerTypesService {
 
     char findTypeByMatchAndUser(Match match, User user);
+
+    public void saveBet(Bet bet, User user);
+
+    public List<PlayerTypes> findByUserId(Long userId);
+
+    public List<RestTypes> getApi(Long userId);
+
 }

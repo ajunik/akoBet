@@ -9,6 +9,16 @@ import javax.persistence.*;
 @Table(name = "PLAYER_TYPES")
 public class PlayerTypes {
 
+    public PlayerTypes() {
+    }
+
+    public PlayerTypes(char type, User user, Match match) {
+        this.type = type;
+        this.user = user;
+        this.match = match;
+    }
+
+
     @Id
     @GeneratedValue(generator = "playerTypes_id", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "playerTypes_id", sequenceName = "playerTypes_id_seq")
@@ -22,4 +32,37 @@ public class PlayerTypes {
     @OneToOne(targetEntity = Match.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "matchId", nullable = true)
     private Match match;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public char getType() {
+        return type;
+    }
+
+    public void setType(char type) {
+        this.type = type;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Match getMatch() {
+        return match;
+    }
+
+    public void setMatch(Match match) {
+        this.match = match;
+    }
 }

@@ -17,4 +17,9 @@ public interface MatchService {
     public List<Match> init(Set set) throws ParseException;
 
     List<Match> findByLeague(Long leagueId);
+
+    public Integer getActualRound(League league);
+
+    public Match findById(Long id);
+
 }

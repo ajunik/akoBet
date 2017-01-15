@@ -11,8 +11,10 @@ app.controller('BetCtrl', function ($scope, $http) {
     var currentDate = new Date();
     var date;
     $scope.time;
+    $scope.typesForRound;
+    $scope.showForm;
 
-    for (var i = 1; i < maxRound; i++) {
+    for (var i = 1; i <= maxRound; i++) {
         $scope.rounds.push(i);
     }
 
@@ -21,10 +23,23 @@ app.controller('BetCtrl', function ($scope, $http) {
         var temp2 = temp*5;
         date = new Date($scope.matches[temp2].date);
 
-        if(date.getTime() < currentDate.getTime()) {
+        if (date.getTime() > currentDate.getTime()) {
             $scope.time = true;
         } else {
             $scope.time = false;
+        }
+
+        $scope.typesForRound = false;
+        $scope.userTypes.forEach(function (userType) {
+            if (userType.round == $('#123 option:selected').val()) {
+                $scope.typesForRound = true;
+            }
+        });
+
+        if ($scope.time && !$scope.typesForRound) {
+            $scope.showForm = true;
+        } else {
+            $scope.showForm = false;
         }
 
         var month = date.getMonth()+1;
@@ -45,20 +60,13 @@ app.controller('BetCtrl', function ($scope, $http) {
             console.log('error');
         });
 
-    $scope.compareDate = function(round, now) {
-        var bool;
-        var temp = round - 1;
-        var temp2 = temp*5;
-        date = new Date($scope.matches[temp2].date);
+    $http.get('/rest/types/' + user)
+        .then(function (success) {
+            $scope.userTypes = success.data;
+        }, function (error) {
+            console.log('error');
+        });
 
-
-        if(date.getTime() > now.getTime()) {
-            bool=true;
-        } else {
-            bool = false;
-        }
-        return bool;
-    };
 
 
 });
