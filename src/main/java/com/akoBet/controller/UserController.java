@@ -56,7 +56,7 @@ public class UserController extends WebMvcConfigurerAdapter {
             } else {
                 mav.addObject("league", "-");
             }
-            String stats = user.getStats() + "%";
+            Double stats = user.getStats();
             mav.addObject("stats", stats);
         }
 

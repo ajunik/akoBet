@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org"
 >
 <head th:include="commons/imports :: head"/>
-<body>
-
+<body ng-app="ProfilApp" ng-controller="ProfilCtrl">
+<script th:inline="javascript">
+    var stats = [[${stats}]];
+</script>
 <header id="header" th:include="commons/elements :: title-menu"/>
 
 <div class="background">
@@ -32,8 +34,9 @@
             <small th:inline="text">[[#{akobet.user.profil.stats}]][[${user.typesCorrect}]]/[[${user.typesFull}]]
             </small>
             <div class="progress progress-high" style="width:250px;">
-                <div class="progress-bar progress-bar-primary" style="width: 90%; font-size:9px; font-weight:600;"
-                     th:text="${stats}"></div>
+                <div class="progress-bar progress-bar-primary" ng-style="{ 'width': {{stats}} + '%' }"
+                     th:inline="text">[[${stats}]]%
+                </div>
             </div>
         </div>
     </div>
@@ -42,5 +45,6 @@
 </div>
 <footer id="footer" th:include="commons/imports :: footer"/>
 <th:block th:include="commons/imports :: scripts"/>
+<script src="/js/profil.js"></script>
 </body>
 </html>
