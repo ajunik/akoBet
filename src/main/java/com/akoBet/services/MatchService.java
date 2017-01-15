@@ -1,5 +1,6 @@
 package com.akoBet.services;
 
+import com.akoBet.entity.Bet;
 import com.akoBet.entity.League;
 import com.akoBet.entity.Match;
 import com.akoBet.entity.Set;
@@ -21,5 +22,11 @@ public interface MatchService {
     public Integer getActualRound(League league);
 
     public Match findById(Long id);
+
+    public List<Match> findAll();
+
+    public void setResults(Bet bet);
+
+    public List<Match> findByRound(Integer round);
 
 }

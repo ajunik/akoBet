@@ -40,4 +40,12 @@ public class BetRestController {
         List<RestTypes> restTypes = playerTypesService.getApi(userId);
         return restTypes;
     }
+
+    @RequestMapping(value = "rest/matches/all", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    List<Match> readAll() {
+        List<Match> matches = matchService.findAll();
+        return matches;
+    }
 }

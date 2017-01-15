@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface PlayerTypesService {
 
-    char findTypeByMatchAndUser(Match match, User user);
+    public PlayerTypes findByMatchAndUser(Match match, User user);
 
     public void saveBet(Bet bet, User user);
 

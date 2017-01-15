@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+>
+<head th:include="commons/imports :: head"/>
+<body ng-app="ResultApp" ng-controller="ResultCtrl">
+<header id="header" th:include="commons/elements :: title-menu"/>
 
+
+<div class="register">
+    <div class="form-container">
+        <form action="#" th:action="@{/admin/addResults}" method="post" th:object="${bet}">
+            <h2 class="text-center" th:text="#{akobet.result.title}"></h2>
+            <div class="list-group" ng-repeat="match in matches" ng-if="match.result == '-'">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-xs-2"></div>
+                        <div class="col-lg-7 col-md-7 col-xs-7">
+                            <span>{{match.team1}}&nbsp;-&nbsp;{{match.team2}}&nbsp;&nbsp;</span>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-xs-2">
+                            <select class="input-xs" ng-model="selectType" th:field="*{types}">
+                                <option value="" style="display:none"></option>
+                                <option ng-repeat="result in results" value="{{match.id}}-{{result}}">{{result}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit" th:text="#{akobet.bet.save}"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer id="footer" th:include="commons/imports :: footer"/>
+<th:block th:include="commons/imports :: scripts"/>
+<script src="/js/results.js"></script>
+<link rel="stylesheet" href="/css/bet.css"/>
 </body>
 </html>

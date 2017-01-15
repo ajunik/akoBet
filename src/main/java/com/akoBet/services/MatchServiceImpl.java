@@ -1,5 +1,6 @@
 package com.akoBet.services;
 
+import com.akoBet.entity.Bet;
 import com.akoBet.entity.League;
 import com.akoBet.entity.Match;
 import com.akoBet.entity.Set;
@@ -23,6 +24,12 @@ public class MatchServiceImpl implements MatchService {
 
     @Autowired
     LeagueService leagueService;
+
+    @Autowired
+    MatchService matchService;
+
+    @Autowired
+    DuelService duelService;
 
     @Override
     public Match save(Match match) {
@@ -65,5 +72,35 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public Match findById(Long id) {
         return matchRepository.findOne(id);
+    }
+
+    @Override
+    public List<Match> findAll() {
+        return matchRepository.findAll();
+    }
+
+    @Override
+    public void setResults(Bet bet) {
+        String[] singleTypes = bet.getTypes().split(",");
+        Integer round = 0;
+        for (String type : singleTypes) {
+            if (!type.equals("")) {
+                String[] temp = type.split("-");
+                Long matchId = Long.valueOf(temp[0]);
+                char result = temp[1].charAt(0);
+
+                Match match = findById(matchId);
+                round = match.getRound();
+                match.setResult(result);
+                save(match);
+            }
+        }
+
+        duelService.saveResults(round);
+    }
+
+    @Override
+    public List<Match> findByRound(Integer round) {
+        return matchRepository.findByRound(round);
     }
 }

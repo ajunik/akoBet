@@ -25,6 +25,7 @@ app.controller('PlayersCtrl', function ($scope, $http) {
     $http.get('/rest/players/' + id)
         .then(function (success) {
             $scope.players = success.data;
+            $scope.numberOfMatches = $scope.players[1].matches;
         }, function (error) {
             console.log('error');
         });

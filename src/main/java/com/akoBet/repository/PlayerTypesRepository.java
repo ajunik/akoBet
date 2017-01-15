@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface PlayerTypesRepository extends JpaRepository<PlayerTypes, Long> {
 
-    char findTypeByMatchAndUser(Match match, User user);
+    public PlayerTypes findByMatchAndUser(Match match, User user);
 
     public List<PlayerTypes> findByUser(User user);
 

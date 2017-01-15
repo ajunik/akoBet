@@ -48,7 +48,8 @@
     </select>
     <div style="padding:20px;">
         <ul class="list-group" ng-repeat="duel in allDuels" ng-if="duel.round == selectedRound">
-            <li class="list-group-item">{{duel.player1}}&nbsp;-&nbsp;{{duel.player2}}&nbsp;<span ng-if="duel.score1">{{duel.score1}}:{{duel.score2}}</span>
+            <li class="list-group-item">{{duel.player1}}&nbsp;-&nbsp;{{duel.player2}}&nbsp;<span
+                    ng-if="numberOfMatches == selectedRound">{{duel.score1}}:{{duel.score2}}</span>
             </li>
         </ul>
     </div>

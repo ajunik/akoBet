@@ -1,5 +1,7 @@
 package com.akoBet.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -9,6 +11,7 @@ import java.util.Date;
 /**
  * Created by Arek on 09.01.2017.
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Table(name = "MATCHES")
 public class Match {

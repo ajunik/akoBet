@@ -12,4 +12,6 @@ import java.util.List;
 public interface MatchRepository extends JpaRepository<Match, Long> {
 
     List<Match> findByLeague(League league);
+
+    List<Match> findByRound(Integer round);
 }

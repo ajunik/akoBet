@@ -1,5 +1,6 @@
 package com.akoBet.controller;
 
+import com.akoBet.entity.Bet;
 import com.akoBet.entity.League;
 import com.akoBet.entity.Match;
 import com.akoBet.entity.Set;
@@ -31,6 +32,7 @@ public class MatchController {
 
     @Autowired
     LeagueService leagueService;
+
 
     @RequestMapping(value = "/admin/addMatches", method = RequestMethod.GET)
     public String showForm(Set set, Model model) {
@@ -94,6 +96,25 @@ public class MatchController {
             }
         }
         return "";
+    }
+
+
+    @RequestMapping(value = "/admin/addResults", method = RequestMethod.GET)
+    public String showForm(Bet bet) {
+        return "admin/game/addResult";
+    }
+
+
+    @RequestMapping(value = "/admin/addResults", method = {RequestMethod.PUT, RequestMethod.POST})
+    public String addResults(@Valid Bet bet, BindingResult bindingResult, Model model) {
+
+        matchService.setResults(bet);
+
+
+        model.addAttribute("message", "akobet.addResults.success");
+        model.addAttribute("link", "/");
+        model.addAttribute("linkMessage", "akobet.home.go");
+        return "message";
     }
 }
 

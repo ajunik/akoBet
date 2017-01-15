@@ -25,8 +25,8 @@ public class PlayerTypesServiceImpl implements PlayerTypesService {
 
 
     @Override
-    public char findTypeByMatchAndUser(Match match, User user) {
-        return playerTypesRepository.findTypeByMatchAndUser(match, user);
+    public PlayerTypes findByMatchAndUser(Match match, User user) {
+        return playerTypesRepository.findByMatchAndUser(match, user);
     }
 
     @Override

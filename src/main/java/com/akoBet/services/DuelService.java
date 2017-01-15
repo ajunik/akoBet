@@ -17,6 +17,8 @@ public interface DuelService {
 
     public List<Duel> findByRound(Integer round);
 
+    public void saveResults(Integer round);
+
     public List<Duel> findByLeague(League league);
 
     public List<DuelRest> getDuelsApi(Long leagueId);
